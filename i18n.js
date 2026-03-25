@@ -320,6 +320,12 @@ function setLang(lang) {
 
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ms' ? 'ms' : 'en';
 
+  // Swap store badge images
+  const appstoreBadge = document.querySelector('[data-badge="appstore"]');
+  const googleplayBadge = document.querySelector('[data-badge="googleplay"]');
+  if (appstoreBadge) appstoreBadge.src = `images/badges/app-store-${lang}.svg`;
+  if (googleplayBadge) googleplayBadge.src = `images/badges/google-play-${lang}.svg`;
+
   // Update active button
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
