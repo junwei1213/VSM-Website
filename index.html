@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoVeggie Malaysia - Find Vegetarian & Vegan Restaurants Near You</title>
+  <meta name="description" content="Malaysia's largest vegetarian restaurant finder. Discover 2,000+ veggie-friendly restaurants across all states. Download the GoVeggie app today.">
+  <meta name="keywords" content="vegetarian, vegan, Malaysia, restaurant finder, plant-based, KL vegetarian, GoVeggie">
+  <meta property="og:title" content="GoVeggie Malaysia - Vegetarian Restaurant Finder">
+  <meta property="og:description" content="Discover 2,000+ vegetarian & vegan restaurants across Malaysia">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://goveggiemalaysia.cloud">
+  <meta property="og:image" content="images/hero-food.png">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-50: #ecfdf5;
+      --green-100: #d1fae5;
+      --green-200: #a7f3d0;
+      --green-300: #6ee7b7;
+      --green-400: #34d399;
+      --green-500: #10b981;
+      --green-600: #059669;
+      --green-700: #047857;
+      --green-800: #065f46;
+      --green-900: #064e3b;
+      --neutral-50: #f8fafc;
+      --neutral-100: #f1f5f9;
+      --neutral-200: #e2e8f0;
+      --neutral-400: #94a3b8;
+      --neutral-500: #64748b;
+      --neutral-600: #475569;
+      --neutral-700: #334155;
+      --neutral-800: #1e293b;
+      --neutral-900: #0f172a;
+      --radius: 20px;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+      --shadow-green: 0 12px 30px -8px rgba(16, 185, 129, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--neutral-800);
+      background: var(--neutral-50);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      transition: all 0.4s ease; padding: 12px 0;
+    }
+    nav.scrolled { background: rgba(255,255,255,0.9); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); padding: 8px 0; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.35rem; color: var(--green-700); text-decoration: none; font-family: 'Outfit'; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 10px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--neutral-600); font-weight: 600; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--green-700); }
+    
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 28px; border-radius: 50px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; border: none;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--green-400), var(--green-600)); color: #fff; box-shadow: var(--shadow-green); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 35px -8px rgba(16, 185, 129, 0.5); }
+    .btn-outline { background: transparent; color: var(--green-700); border: 2px solid var(--green-500); }
+    .btn-outline:hover { background: var(--green-50); transform: translateY(-2px); }
+    .btn-dark { background: var(--neutral-900); color: #fff; }
+    .btn-dark:hover { background: var(--neutral-800); transform: translateY(-2px); }
+    .btn-lg { padding: 16px 36px; font-size: 1.1rem; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--neutral-800); }
+    .hamburger svg { width: 30px; height: 30px; }
+
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; padding: 160px 24px 100px; background: #fff; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(255,255,255,0) 70%); top: -200px; right: -250px;
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 10; }
+    .hero-badge { display: inline-flex; background: var(--green-50); color: var(--green-700); padding: 8px 20px; border-radius: 50px; font-weight: 700; margin-bottom: 24px; border: 1px solid var(--green-200); }
+    .hero h1 { font-size: clamp(3rem, 5.5vw, 4.5rem); color: var(--neutral-900); margin-bottom: 24px; line-height: 1.1; }
+    .hero h1 .highlight { background: linear-gradient(135deg, var(--green-400), var(--green-700)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.25rem; color: var(--neutral-600); margin-bottom: 40px; max-width: 540px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 50px; }
+    .hero-stats { display: flex; gap: 48px; border-top: 1px solid var(--neutral-200); padding-top: 32px; }
+    .hero-stat h3 { font-size: 2.25rem; font-weight: 800; color: var(--neutral-900); }
+    .hero-stat p { font-size: 0.95rem; color: var(--neutral-500); font-weight: 500; }
+    
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .hero-img { width: 480px; max-width: 100%; border-radius: 24px; box-shadow: var(--shadow-lg); transition: transform 0.5s; z-index: 2; position: relative; }
+    .floating-card {
+      position: absolute; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5); border-radius: var(--radius); padding: 16px 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08); z-index: 3;
+    }
+    .floating-card.card-1 { top: 10%; left: -40px; }
+    .floating-card.card-2 { bottom: 15%; right: -30px; }
+    .floating-card h5 { font-size: 0.95rem; font-weight: 800; color: var(--neutral-900); }
+    .floating-card p { font-size: 0.85rem; color: var(--neutral-500); font-weight: 500; }
+
+    .section { padding: 120px 24px; position: relative; }
+    .section-alt { background: linear-gradient(180deg, var(--neutral-50) 0%, #fff 100%); }
+    .section-green { background: linear-gradient(135deg, var(--green-800), var(--green-900)); color: #fff; }
+    .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+    .section-header { text-align: center; margin-bottom: 70px; }
+    .section-label { display: inline-block; font-size: 0.85rem; font-weight: 800; color: var(--green-600); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; padding: 6px 16px; background: var(--green-50); border-radius: 50px; }
+    .section-green .section-label { color: var(--green-100); background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+    .section-header h2 { font-size: clamp(2.25rem, 4.5vw, 3.25rem); font-weight: 800; margin-bottom: 20px; color: var(--neutral-900); }
+    .section-green .section-header h2 { color: #fff; }
+    .section-header p { font-size: 1.2rem; color: var(--neutral-600); max-width: 650px; margin: 0 auto; }
+    .section-green .section-header p { color: rgba(255,255,255,0.8); }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .feature-card { background: #fff; border-radius: var(--radius); padding: 40px 32px; border: 1px solid var(--neutral-100); box-shadow: var(--shadow-sm); transition: all 0.4s; }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .feature-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--green-50), var(--green-100)); color: var(--green-600); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: all 0.3s; }
+    .feature-card:hover .feature-icon { background: var(--green-600); color: #fff; transform: scale(1.1) rotate(5deg); }
+    .feature-card:hover .feature-icon svg { stroke: #fff !important; }
+    .feature-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 12px; color: var(--neutral-900); }
+    .feature-card p { font-size: 1rem; color: var(--neutral-600); }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 45px; left: 15%; right: 15%; height: 2px; background: linear-gradient(90deg, transparent, var(--green-300), transparent); z-index: 1; }
+    .step { text-align: center; position: relative; z-index: 2; }
+    .step-number { width: 90px; height: 90px; background: #fff; color: var(--green-600); border: 2px solid var(--green-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; font-family: 'Outfit'; margin: 0 auto 32px; box-shadow: var(--shadow-md); transition: all 0.4s; }
+    .step:hover .step-number { background: var(--green-600); color: #fff; transform: scale(1.1); box-shadow: var(--shadow-green); border-color: var(--green-600); }
+    .step h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 12px; color: var(--neutral-900); }
+    .step p { font-size: 1.05rem; color: var(--neutral-600); max-width: 300px; margin: 0 auto; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+    .stat-card { text-align: center; padding: 48px 32px; background: rgba(255,255,255,0.05); border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); transition: transform 0.3s; }
+    .stat-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+    .stat-card h3 { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; color: var(--green-300); margin-bottom: 8px; }
+    .stat-card p { font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 600; }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 20px; box-shadow: var(--shadow-lg); }
+    .about-content h2 { font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 800; margin-bottom: 24px; color: var(--neutral-900); }
+    .about-content p { font-size: 1.1rem; color: var(--neutral-600); margin-bottom: 20px; }
+    .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .about-value { display: flex; align-items: flex-start; gap: 16px; padding: 16px; background: #fff; border-radius: 16px; border: 1px solid var(--neutral-100); box-shadow: var(--shadow-sm); transition: transform 0.3s; }
+    .about-value:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .about-value-icon { width: 40px; height: 40px; background: var(--green-50); color: var(--green-600); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .about-value h4 { font-size: 1.05rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 4px; }
+    .about-value p { font-size: 0.9rem; color: var(--neutral-500); }
+
+    .vendor-section { background: linear-gradient(135deg, var(--green-50) 0%, #fff 100%); padding: 100px 24px; }
+    .vendor-card { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 32px; padding: 80px 60px; text-align: center; border: 1px solid rgba(16,185,129,0.1); box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+    .vendor-card::before { content: ''; position: absolute; top:0; left:0; right:0; height: 6px; background: linear-gradient(90deg, var(--green-400), var(--green-600)); }
+    .vendor-card h2 { font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 800; color: var(--neutral-900); margin-bottom: 20px; }
+    .vendor-card p { font-size: 1.15rem; color: var(--neutral-600); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .vendor-perks { display: flex; justify-content: center; gap: 32px; margin-bottom: 48px; flex-wrap: wrap; }
+    .vendor-perk { display: flex; align-items: center; gap: 12px; font-size: 1.05rem; font-weight: 600; color: var(--neutral-800); background: var(--neutral-50); padding: 12px 24px; border-radius: 50px; }
+    .vendor-perk-check { width: 28px; height: 28px; background: var(--green-500); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+
+    .download-section { background: linear-gradient(135deg, var(--green-800) 0%, var(--green-900) 100%); color: #fff; text-align: center; padding: 120px 24px; }
+    .download-section h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; }
+    .download-section p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .download-buttons { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 16px; background: #fff; color: var(--neutral-900); padding: 16px 36px; border-radius: 20px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+    .store-btn:hover { transform: translateY(-5px); box-shadow: 0 25px 45px rgba(0,0,0,0.3); }
+    .store-btn svg { width: 36px; height: 36px; }
+    .store-btn-text { text-align: left; }
+    .store-btn-text small { font-size: 0.75rem; color: var(--neutral-500); display: block; font-weight: 600; text-transform: uppercase; }
+    .store-btn-text span { font-size: 1.2rem; font-weight: 800; display: block; font-family: 'Outfit'; }
+
+    footer { background: var(--neutral-900); color: rgba(255,255,255,0.6); padding: 80px 24px 40px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand h3 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .footer-brand p { font-size: 1rem; line-height: 1.8; max-width: 400px; }
+    .footer-col h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 24px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 16px; }
+    .footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+    .footer-col a:hover { color: var(--green-400); transform: translateX(5px); display: inline-block;}
+    .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+    .footer-social { display: flex; gap: 20px; }
+    .footer-social a { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 50%; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 1.2rem; text-decoration: none; font-weight: 700; }
+    .footer-social a:hover { background: var(--green-600); color: #fff; transform: translateY(-3px); }
+
+    .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 99; padding: 100px 24px 32px; display: flex; flex-direction: column; gap: 24px; opacity: 0; pointer-events: none; transition: all 0.4s; transform: translateY(-20px); }
+    .mobile-menu.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .mobile-menu a { font-size: 1.5rem; font-weight: 700; font-family: 'Outfit'; color: var(--neutral-800); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--neutral-100); transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--green-600); }
+
+    @media (max-width: 992px) { .hero-inner { grid-template-columns: 1fr; text-align: center; } .hero p { margin: 0 auto 40px; } .hero-cta { justify-content: center; } .hero-stats { justify-content: center; } .features-grid { grid-template-columns: repeat(2, 1fr); } .steps { grid-template-columns: 1fr; gap: 60px; } .steps::before { display: none; } .about-grid { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .features-grid { grid-template-columns: 1fr; } .vendor-card { padding: 40px 24px; } .vendor-perks { flex-direction: column; align-items: center; } }
+    @media (max-width: 480px) { .hero h1 { font-size: 2.5rem; } .hero-stats { flex-direction: column; align-items: center; gap: 24px; } .stats-grid { grid-template-columns: 1fr; } .about-values { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 24px; text-align: center; } .download-buttons { flex-direction: column; } .store-btn { justify-content: center; } }
+    
+    .animate-target { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
+    .animate-target.animate-in { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="images/logo.png" alt="GoVeggie" style="width:32px;height:32px;border-radius:8px;"> GoVeggie
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#vendors">For Restaurants</a></li>
+        <li><a href="#download" class="btn btn-primary">Download App</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+        <svg id="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features" onclick="toggleMenu()">Features</a>
+    <a href="#how-it-works" onclick="toggleMenu()">How It Works</a>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#vendors" onclick="toggleMenu()">For Restaurants</a>
+    <a href="#download" onclick="toggleMenu()">Download App</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">Malaysia's #1 Veggie Finder</div>
+        <h1>Discover <span class="highlight">Vegetarian</span> Food Everywhere in Malaysia</h1>
+        <p>Find 2,000+ vegetarian and vegan restaurants across all states. From hidden gems to popular favourites, your next plant-based meal is just a tap away.</p>
+        <div class="hero-cta">
+          <a href="#download" class="btn btn-primary btn-lg">Download Free App</a>
+          <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <h3>2,000+</h3>
+            <p>Restaurants</p>
+          </div>
+          <div class="hero-stat">
+            <h3>16</h3>
+            <p>States Covered</p>
+          </div>
+          <div class="hero-stat">
+            <h3>100K+</h3>
+            <p>Downloads</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-card card-1">
+          <h5>Pure Vegan</h5>
+          <p>Green Leaf Kitchen - 4.8 *</p>
+        </div>
+        <div class="floating-card card-2">
+          <h5>0.3km away</h5>
+          <p>Open until 9:00 PM</p>
+        </div>
+        <img src="images/hero-food.png" alt="Malaysian vegetarian dishes with GoVeggie app" class="hero-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Features</div>
+        <h2>Everything You Need to Eat Green</h2>
+        <p>Powerful tools to find your perfect plant-based meal, whether you're a lifelong vegetarian or just starting out.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>GPS Restaurant Finder</h3>
+          <p>Find vegetarian restaurants near you instantly with precise Google Maps integration. Sort by distance to discover hidden gems in every alley.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h3>Smart Search & Filters</h3>
+          <p>Filter by state, meal time, price range, pure vegan, no allium, and more. Find exactly what you're craving in seconds.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3>Save Favourites</h3>
+          <p>Bookmark restaurants you love and access them anytime. Your personal veggie food list, synced across devices.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <h3>Photos & Details</h3>
+          <p>Browse real food photos, menus, opening hours, and contact details. Know what to expect before you visit.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
+          <h3>Navigation Integration</h3>
+          <p>One tap to open Google Maps or Waze for turn-by-turn directions. Get there easily with your preferred navigation app.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Community Powered</h3>
+          <p>Submit new restaurants, report issues, and help keep data accurate. Built by the community, for the community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">How It Works</div>
+        <h2>Your Next Veggie Meal in 3 Steps</h2>
+        <p>Finding plant-based food in Malaysia has never been easier.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Download the App</h3>
+          <p>Get GoVeggie free on iOS or Android. Create an account in seconds with Google, Apple, or Facebook.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Search or Browse</h3>
+          <p>Use GPS to find nearby restaurants or search by name, state, or cuisine type. Apply filters to match your diet.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Eat & Share</h3>
+          <p>Navigate there with one tap, enjoy your meal, and share your favourite spots with friends and the community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section-green">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Impact</div>
+        <h2>Trusted by Malaysia's Veggie Community</h2>
+        <p>Built on 10+ years of data from the Vegetarian Society of Malaysia.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>2,168</h3>
+          <p>Verified Restaurants</p>
+        </div>
+        <div class="stat-card">
+          <h3>260K+</h3>
+          <p>Facebook Community</p>
+        </div>
+        <div class="stat-card">
+          <h3>100K+</h3>
+          <p>App Downloads</p>
+        </div>
+        <div class="stat-card">
+          <h3>16</h3>
+          <p>States & Territories</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img"><img src="images/about-community.png" alt="Malaysian community sharing vegetarian food" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);"></div>
+        <div class="about-content">
+          <div class="section-label">About GoVeggie</div>
+          <h2>A Project by the Vegetarian Society of Malaysia</h2>
+          <p>GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a registered NGO dedicated to promoting plant-based living across the nation since its founding.</p>
+          <p>Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.</p>
+          <div class="about-values">
+            <div class="about-value">
+              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div>
+                <h4>Always Free</h4>
+                <p>Free for all users, forever</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+              <div>
+                <h4>Community First</h4>
+                <p>Volunteer-driven with 10+ years of data</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <div>
+                <h4>All of Malaysia</h4>
+                <p>Covering every state & territory</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2.5"><path d="M12 22c-4-3-8-6-8-11a8 8 0 0 1 16 0c0 5-4 8-8 11z"/><path d="M12 13V7"/><path d="M9 10l3-3 3 3"/></svg></div>
+              <div>
+                <h4>Sustainability</h4>
+                <p>Promoting a greener planet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENDOR CTA -->
+  <section class="section vendor-section" id="vendors">
+    <div class="container">
+      <div class="vendor-card" style="overflow:hidden; position:relative;">
+        <img src="images/restaurant-scene.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:200px;object-fit:cover;opacity:0.12;pointer-events:none;">
+        <div class="section-label" style="position:relative;">For Restaurant Owners</div>
+        <h2 style="position:relative;">Get Your Restaurant on GoVeggie</h2>
+        <p>Join Malaysia's largest vegetarian restaurant directory. Reach 260,000+ food lovers actively searching for plant-based dining options.</p>
+        <div class="vendor-perks">
+          <div class="vendor-perk">
+            <div class="vendor-perk-check">&#10003;</div>
+            Free basic listing
+          </div>
+          <div class="vendor-perk">
+            <div class="vendor-perk-check">&#10003;</div>
+            Reach 100K+ app users
+          </div>
+          <div class="vendor-perk">
+            <div class="vendor-perk-check">&#10003;</div>
+            Manage your page
+          </div>
+          <div class="vendor-perk">
+            <div class="vendor-perk-check">&#10003;</div>
+            Featured placement options
+          </div>
+        </div>
+        <a href="mailto:info@goveggiemalaysia.cloud" class="btn btn-primary btn-lg">Partner With Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="section download-section" id="download">
+    <div class="container">
+      <h2>Start Finding Veggie Food Today</h2>
+      <p>Download GoVeggie for free and never wonder "where to eat veggie?" again.</p>
+      <div class="download-buttons">
+        <a href="https://apps.apple.com/my/app/goveggie-malaysia/id1183783738" class="store-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text">
+            <small>Download on the</small>
+            <span>App Store</span>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog" class="store-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.13c-.34-.19-.55-.57-.55-.97V1.84c0-.4.21-.78.55-.97l11.02 11.13L3.18 23.13zm1.52-22.41L15.7 11.14l-2.92 2.95L4.7.72zM20.16 10.47l-3.12 1.8-3.17-3.2 3.17-3.2 3.12 1.8c.86.5.86 1.3 0 2.8zm-3.12 1.8l-3.17 3.2L4.7 23.28l11-10.42 1.34-1.59z"/></svg>
+          <div class="store-btn-text">
+            <small>Get it on</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3><img src="images/logo.png" alt="GoVeggie" style="width:24px;height:24px;border-radius:6px;vertical-align:middle;margin-right:6px;">GoVeggie Malaysia</h3>
+        <p>A project by the Vegetarian Society of Malaysia (VSM). Making plant-based dining accessible to everyone across Malaysia since 2015.</p>
+      </div>
+      <div class="footer-col">
+        <h4>App</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#download">Download</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/groups/781347675284086/" target="_blank" rel="noopener">Facebook Group</a></li>
+          <li><a href="#vendors">For Restaurants</a></li>
+          <li><a href="#about">About VSM</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@goveggiemalaysia.cloud">info@goveggiemalaysia.cloud</a></li>
+          <li><a href="https://goveggiemalaysia.cloud" target="_blank" rel="noopener">goveggiemalaysia.cloud</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Vegetarian Society of Malaysia. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/groups/781347675284086/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/goVeggieMY" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Animate on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.feature-card, .step, .stat-card').forEach((el, i) => {
+      el.classList.add('animate-target');
+      el.style.transitionDelay = `${i % 3 * 100}ms`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
