@@ -1409,6 +1409,35 @@
       outline: 2px solid var(--green-500);
       outline-offset: 3px;
     }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      margin-left: 8px;
+      background: var(--neutral-100);
+      border-radius: 10px;
+      padding: 3px;
+    }
+    .lang-btn {
+      padding: 6px 12px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--neutral-500);
+      transition: all 0.3s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .lang-btn.active {
+      background: #fff;
+      color: var(--green-700);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .lang-btn:hover:not(.active) {
+      color: var(--neutral-800);
+    }
   </style>
 </head>
 
@@ -1421,11 +1450,18 @@
         <img src="images/logo.png" alt="GoVeggie" style="width:32px;height:32px;border-radius:8px;"> GoVeggie
       </a>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#vendors">For Restaurants</a></li>
-        <li><a href="#download" class="btn btn-primary">Download App</a></li>
+        <li><a href="#features" data-i18n="nav_features">Features</a></li>
+        <li><a href="#how-it-works" data-i18n="nav_how">How It Works</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#vendors" data-i18n="nav_restaurants">For Restaurants</a></li>
+        <li><a href="#download" class="btn btn-primary" data-i18n="nav_download">Download App</a></li>
+        <li>
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="ms" onclick="setLang('ms')">BM</button>
+            <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">CN</button>
+          </div>
+        </li>
       </ul>
       <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
         <svg id="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1437,11 +1473,16 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#features" onclick="toggleMenu()">Features</a>
-    <a href="#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="#about" onclick="toggleMenu()">About</a>
-    <a href="#vendors" onclick="toggleMenu()">For Restaurants</a>
-    <a href="#download" onclick="toggleMenu()">Download App</a>
+    <a href="#features" onclick="toggleMenu()" data-i18n="nav_features">Features</a>
+    <a href="#how-it-works" onclick="toggleMenu()" data-i18n="nav_how">How It Works</a>
+    <a href="#about" onclick="toggleMenu()" data-i18n="nav_about">About</a>
+    <a href="#vendors" onclick="toggleMenu()" data-i18n="nav_restaurants">For Restaurants</a>
+    <a href="#download" onclick="toggleMenu()" data-i18n="nav_download">Download App</a>
+    <div class="lang-switcher" style="margin-top:20px;align-self:flex-start;">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="ms" onclick="setLang('ms')">BM</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">CN</button>
+    </div>
   </div>
 
   <!-- HERO -->
@@ -1454,27 +1495,26 @@
             <path
               d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z" />
           </svg>
-          Malaysia&apos;s #1 Veggie Finder
+          <span data-i18n="hero_badge">Malaysia's #1 Veggie Finder</span>
         </div>
-        <h1>Discover <span class="highlight">Vegetarian</span> Food Everywhere in Malaysia</h1>
-        <p>Find 2,000+ vegetarian and vegan restaurants across all states. From hidden gems to popular favourites, your
-          next plant-based meal is just a tap away.</p>
+        <h1><span data-i18n="hero_title_1">Discover </span><span class="highlight" data-i18n="hero_title_hl">Vegetarian</span><span data-i18n="hero_title_2"> Food Everywhere in Malaysia</span></h1>
+        <p><span data-i18n="hero_desc">Find 2,000+ vegetarian and vegan restaurants across all states. From hidden gems to popular favourites, your next plant-based meal is just a tap away.</span></p>
         <div class="hero-cta">
-          <a href="#download" class="btn btn-primary btn-lg">Download Free App</a>
-          <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+          <a href="#download" class="btn btn-primary btn-lg" data-i18n="hero_cta_download">Download Free App</a>
+          <a href="#features" class="btn btn-outline btn-lg" data-i18n="hero_cta_learn">Learn More</a>
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
             <h3>2,000+</h3>
-            <p>Restaurants</p>
+            <p data-i18n="hero_stat_restaurants">Restaurants</p>
           </div>
           <div class="hero-stat">
             <h3>16</h3>
-            <p>States Covered</p>
+            <p data-i18n="hero_stat_states">States Covered</p>
           </div>
           <div class="hero-stat">
             <h3>100K+</h3>
-            <p>Downloads</p>
+            <p data-i18n="hero_stat_downloads">Downloads</p>
           </div>
         </div>
       </div>
@@ -1482,7 +1522,7 @@
         <div class="floating-card card-1">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <div style="width: 8px; height: 8px; background: var(--green-500); border-radius: 50%;"></div>
-            <h5 style="margin: 0;">Pure Vegan</h5>
+            <h5 style="margin: 0;" data-i18n="hero_float_vegan">Pure Vegan</h5>
           </div>
           <p style="display: flex; align-items: center; gap: 4px;">Green Leaf Kitchen <span
               style="color: var(--green-600);">4.8</span> <svg width="12" height="12" viewBox="0 0 24 24"
@@ -1497,9 +1537,9 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <h5 style="margin: 0;">0.3km away</h5>
+            <h5 style="margin: 0;" data-i18n="hero_float_away">0.3km away</h5>
           </div>
-          <p>Open until 9:00 PM</p>
+          <p data-i18n="hero_float_open">Open until 9:00 PM</p>
         </div>
         <img src="images/hero-food.png" alt="Malaysian vegetarian dishes with GoVeggie app" class="hero-img">
       </div>
@@ -1510,10 +1550,9 @@
   <section class="section" id="features">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">Features</div>
-        <h2>Everything You Need to Eat Green</h2>
-        <p>Powerful tools to find your perfect plant-based meal, whether you're a lifelong vegetarian or just starting
-          out.</p>
+        <div class="section-label" data-i18n="feat_label">Features</div>
+        <h2 data-i18n="feat_title">Everything You Need to Eat Green</h2>
+        <p><span data-i18n="feat_desc">Powerful tools to find your perfect plant-based meal, whether you're a lifelong vegetarian or just starting out.</span></p>
       </div>
       <div class="features-grid">
         <div class="feature-card">
@@ -1522,9 +1561,8 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg></div>
-          <h3>GPS Restaurant Finder</h3>
-          <p>Find vegetarian restaurants near you instantly with precise Google Maps integration. Sort by distance to
-            discover hidden gems in every alley.</p>
+          <h3 data-i18n="feat_gps_title">GPS Restaurant Finder</h3>
+          <p><span data-i18n="feat_gps_desc">Find vegetarian restaurants near you instantly with precise Google Maps integration. Sort by distance to discover hidden gems in every alley.</span></p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1532,9 +1570,8 @@
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg></div>
-          <h3>Smart Search & Filters</h3>
-          <p>Filter by state, meal time, price range, pure vegan, no allium, and more. Find exactly what you're craving
-            in seconds.</p>
+          <h3 data-i18n="feat_search_title">Smart Search & Filters</h3>
+          <p><span data-i18n="feat_search_desc">Filter by state, meal time, price range, pure vegan, no allium, and more. Find exactly what you're craving in seconds.</span></p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1542,9 +1579,8 @@
               <path
                 d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg></div>
-          <h3>Save Favourites</h3>
-          <p>Bookmark restaurants you love and access them anytime. Your personal veggie food list, synced across
-            devices.</p>
+          <h3 data-i18n="feat_fav_title">Save Favourites</h3>
+          <p><span data-i18n="feat_fav_desc">Bookmark restaurants you love and access them anytime. Your personal veggie food list, synced across devices.</span></p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1553,18 +1589,16 @@
               <circle cx="8.5" cy="8.5" r="1.5" />
               <polyline points="21 15 16 10 5 21" />
             </svg></div>
-          <h3>Photos & Details</h3>
-          <p>Browse real food photos, menus, opening hours, and contact details. Know what to expect before you visit.
-          </p>
+          <h3 data-i18n="feat_photo_title">Photos & Details</h3>
+          <p><span data-i18n="feat_photo_desc">Browse real food photos, menus, opening hours, and contact details. Know what to expect before you visit.</span></p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="3 11 22 2 13 21 11 13 3 11" />
             </svg></div>
-          <h3>Navigation Integration</h3>
-          <p>One tap to open Google Maps or Waze for turn-by-turn directions. Get there easily with your preferred
-            navigation app.</p>
+          <h3 data-i18n="feat_nav_title">Navigation Integration</h3>
+          <p><span data-i18n="feat_nav_desc">One tap to open Google Maps or Waze for turn-by-turn directions. Get there easily with your preferred navigation app.</span></p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1574,9 +1608,8 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
               <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg></div>
-          <h3>Community Powered</h3>
-          <p>Submit new restaurants, report issues, and help keep data accurate. Built by the community, for the
-            community.</p>
+          <h3 data-i18n="feat_community_title">Community Powered</h3>
+          <p><span data-i18n="feat_community_desc">Submit new restaurants, report issues, and help keep data accurate. Built by the community, for the community.</span></p>
         </div>
       </div>
     </div>
@@ -1586,27 +1619,25 @@
   <section class="section section-alt" id="how-it-works">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">How It Works</div>
-        <h2>Your Next Veggie Meal in 3 Steps</h2>
-        <p>Finding plant-based food in Malaysia has never been easier.</p>
+        <div class="section-label" data-i18n="how_label">How It Works</div>
+        <h2 data-i18n="how_title">Your Next Veggie Meal in 3 Steps</h2>
+        <p data-i18n="how_desc">Finding plant-based food in Malaysia has never been easier.</p>
       </div>
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
-          <h3>Download the App</h3>
-          <p>Get GoVeggie free on iOS or Android. Create an account in seconds with Google, Apple, or Facebook.</p>
+          <h3 data-i18n="how_step1_title">Download the App</h3>
+          <p data-i18n="how_step1_desc">Get GoVeggie free on iOS or Android. Create an account in seconds with Google, Apple, or Facebook.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
-          <h3>Search or Browse</h3>
-          <p>Use GPS to find nearby restaurants or search by name, state, or cuisine type. Apply filters to match your
-            diet.</p>
+          <h3 data-i18n="how_step2_title">Search or Browse</h3>
+          <p><span data-i18n="how_step2_desc">Use GPS to find nearby restaurants or search by name, state, or cuisine type. Apply filters to match your diet.</span></p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <h3>Eat & Share</h3>
-          <p>Navigate there with one tap, enjoy your meal, and share your favourite spots with friends and the
-            community.</p>
+          <h3 data-i18n="how_step3_title">Eat & Share</h3>
+          <p><span data-i18n="how_step3_desc">Navigate there with one tap, enjoy your meal, and share your favourite spots with friends and the community.</span></p>
         </div>
       </div>
     </div>
@@ -1616,26 +1647,26 @@
   <section class="section section-green">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">Impact</div>
-        <h2>Trusted by Malaysia's Veggie Community</h2>
-        <p>Built on 10+ years of data from the Vegetarian Society of Malaysia.</p>
+        <div class="section-label" data-i18n="stats_label">Impact</div>
+        <h2 data-i18n="stats_title">Trusted by Malaysia's Veggie Community</h2>
+        <p data-i18n="stats_desc">Built on 10+ years of data from the Vegetarian Society of Malaysia.</p>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
           <h3>2,168</h3>
-          <p>Verified Restaurants</p>
+          <p data-i18n="stats_restaurants">Verified Restaurants</p>
         </div>
         <div class="stat-card">
           <h3>260K+</h3>
-          <p>Facebook Community</p>
+          <p data-i18n="stats_community">Facebook Community</p>
         </div>
         <div class="stat-card">
           <h3>100K+</h3>
-          <p>App Downloads</p>
+          <p data-i18n="stats_downloads">App Downloads</p>
         </div>
         <div class="stat-card">
           <h3>16</h3>
-          <p>States & Territories</p>
+          <p data-i18n="stats_states">States & Territories</p>
         </div>
       </div>
     </div>
@@ -1648,12 +1679,10 @@
         <div class="about-img"><img src="images/about-community.png" alt="Malaysian community sharing vegetarian food"
             style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);"></div>
         <div class="about-content">
-          <div class="section-label">About GoVeggie</div>
-          <h2>A Project by the Vegetarian Society of Malaysia</h2>
-          <p>GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a registered NGO dedicated to
-            promoting plant-based living across the nation since its founding.</p>
-          <p>Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan
-            food, whether they're committed vegans or curious first-timers.</p>
+          <div class="section-label" data-i18n="about_label">About GoVeggie</div>
+          <h2 data-i18n="about_title">A Project by the Vegetarian Society of Malaysia</h2>
+          <p><span data-i18n="about_desc1">GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a community dedicated to promoting plant-based living across the nation.</span></p>
+          <p><span data-i18n="about_desc2">Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.</span></p>
           <div class="about-values">
             <div class="about-value">
               <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -1661,8 +1690,8 @@
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg></div>
               <div>
-                <h4>Always Free</h4>
-                <p>Free for all users, forever</p>
+                <h4 data-i18n="about_free_title">Always Free</h4>
+                <p data-i18n="about_free_desc">Free for all users, forever</p>
               </div>
             </div>
             <div class="about-value">
@@ -1672,8 +1701,8 @@
                   <circle cx="9" cy="7" r="4" />
                 </svg></div>
               <div>
-                <h4>Community First</h4>
-                <p>Volunteer-driven with 10+ years of data</p>
+                <h4 data-i18n="about_comm_title">Community First</h4>
+                <p data-i18n="about_comm_desc">Volunteer-driven with 10+ years of data</p>
               </div>
             </div>
             <div class="about-value">
@@ -1685,8 +1714,8 @@
                     d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                 </svg></div>
               <div>
-                <h4>All of Malaysia</h4>
-                <p>Covering every state & territory</p>
+                <h4 data-i18n="about_msia_title">All of Malaysia</h4>
+                <p data-i18n="about_msia_desc">Covering every state & territory</p>
               </div>
             </div>
             <div class="about-value">
@@ -1697,8 +1726,8 @@
                   <path d="M9 10l3-3 3 3" />
                 </svg></div>
               <div>
-                <h4>Sustainability</h4>
-                <p>Promoting a greener planet</p>
+                <h4 data-i18n="about_sustain_title">Sustainability</h4>
+                <p data-i18n="about_sustain_desc">Promoting a greener planet</p>
               </div>
             </div>
           </div>
@@ -1713,29 +1742,28 @@
       <div class="vendor-card" style="overflow:hidden; position:relative;">
         <img src="images/restaurant-scene.png" alt=""
           style="position:absolute;top:0;left:0;width:100%;height:200px;object-fit:cover;opacity:0.12;pointer-events:none;">
-        <div class="section-label" style="position:relative;">For Restaurant Owners</div>
-        <h2 style="position:relative;">Get Your Restaurant on GoVeggie</h2>
-        <p>Join Malaysia's largest vegetarian restaurant directory. Reach 260,000+ food lovers actively searching for
-          plant-based dining options.</p>
+        <div class="section-label" style="position:relative;" data-i18n="vendor_label">For Restaurant Owners</div>
+        <h2 style="position:relative;" data-i18n="vendor_title">Get Your Restaurant on GoVeggie</h2>
+        <p><span data-i18n="vendor_desc">Join Malaysia's largest vegetarian restaurant directory. Reach 260,000+ food lovers actively searching for plant-based dining options.</span></p>
         <div class="vendor-perks">
           <div class="vendor-perk">
             <div class="vendor-perk-check">&#10003;</div>
-            Free basic listing
+            <span data-i18n="vendor_perk1">Free basic listing</span>
           </div>
           <div class="vendor-perk">
             <div class="vendor-perk-check">&#10003;</div>
-            Reach 100K+ app users
+            <span data-i18n="vendor_perk2">Reach 100K+ app users</span>
           </div>
           <div class="vendor-perk">
             <div class="vendor-perk-check">&#10003;</div>
-            Manage your page
+            <span data-i18n="vendor_perk3">Manage your page</span>
           </div>
           <div class="vendor-perk">
             <div class="vendor-perk-check">&#10003;</div>
-            Featured placement options
+            <span data-i18n="vendor_perk4">Featured placement options</span>
           </div>
         </div>
-        <a href="mailto:info@goveggiemalaysia.cloud" class="btn btn-primary btn-lg">Partner With Us</a>
+        <a href="mailto:info@goveggiemalaysia.cloud" class="btn btn-primary btn-lg" data-i18n="vendor_cta">Partner With Us</a>
       </div>
     </div>
   </section>
@@ -1743,8 +1771,8 @@
   <!-- DOWNLOAD CTA -->
   <section class="section download-section" id="download">
     <div class="container">
-      <h2>Start Finding Veggie Food Today</h2>
-      <p>Download GoVeggie for free and never wonder "where to eat veggie?" again.</p>
+      <h2 data-i18n="dl_title">Start Finding Veggie Food Today</h2>
+      <p data-i18n="dl_desc">Download GoVeggie for free and never wonder "where to eat veggie?" again.</p>
       <div class="download-buttons">
         <a href="https://apps.apple.com/my/app/goveggie-malaysia/id1183783738" class="store-btn" target="_blank"
           rel="noopener">
@@ -1753,8 +1781,8 @@
               d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
           </svg>
           <div class="store-btn-text">
-            <small>Download on the</small>
-            <span>App Store</span>
+            <small data-i18n="dl_appstore">Download on the</small>
+            <span data-i18n="dl_appstore_name">App Store</span>
           </div>
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog" class="store-btn" target="_blank"
@@ -1764,8 +1792,8 @@
               d="M3.18 23.13c-.34-.19-.55-.57-.55-.97V1.84c0-.4.21-.78.55-.97l11.02 11.13L3.18 23.13zm1.52-22.41L15.7 11.14l-2.92 2.95L4.7.72zM20.16 10.47l-3.12 1.8-3.17-3.2 3.17-3.2 3.12 1.8c.86.5.86 1.3 0 2.8zm-3.12 1.8l-3.17 3.2L4.7 23.28l11-10.42 1.34-1.59z" />
           </svg>
           <div class="store-btn-text">
-            <small>Get it on</small>
-            <span>Google Play</span>
+            <small data-i18n="dl_google">Get it on</small>
+            <span data-i18n="dl_google_name">Google Play</span>
           </div>
         </a>
       </div>
@@ -1779,28 +1807,26 @@
         <h3><img src="images/logo.png" alt="GoVeggie"
             style="width:24px;height:24px;border-radius:6px;vertical-align:middle;margin-right:6px;">GoVeggie Malaysia
         </h3>
-        <p>A project by the Vegetarian Society of Malaysia (VSM). Making plant-based dining accessible to everyone
-          across Malaysia since 2015.</p>
+        <p><span data-i18n="footer_desc">A project by the Vegetarian Society of Malaysia (VSM). Making plant-based dining accessible to everyone across Malaysia since 2015.</span></p>
       </div>
       <div class="footer-col">
-        <h4>App</h4>
+        <h4 data-i18n="footer_app">App</h4>
         <ul>
-          <li><a href="#features">Features</a></li>
+          <li><a href="#features" data-i18n="nav_features">Features</a></li>
           <li><a href="#download">Download</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#how-it-works" data-i18n="nav_how">How It Works</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Community</h4>
+        <h4 data-i18n="footer_community">Community</h4>
         <ul>
-          <li><a href="https://www.facebook.com/groups/781347675284086/" target="_blank" rel="noopener">Facebook
-              Group</a></li>
-          <li><a href="#vendors">For Restaurants</a></li>
-          <li><a href="#about">About VSM</a></li>
+          <li><a href="https://www.facebook.com/groups/781347675284086/" target="_blank" rel="noopener" data-i18n="footer_fb">Facebook Group</a></li>
+          <li><a href="#vendors" data-i18n="nav_restaurants">For Restaurants</a></li>
+          <li><a href="#about" data-i18n="footer_about_vsm">About VSM</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h4 data-i18n="footer_contact">Contact</h4>
         <ul>
           <li><a href="mailto:info@goveggiemalaysia.cloud">info@goveggiemalaysia.cloud</a></li>
           <li><a href="https://goveggiemalaysia.cloud" target="_blank" rel="noopener">goveggiemalaysia.cloud</a></li>
@@ -1903,6 +1929,7 @@
       }
     });
   </script>
+  <script src="i18n.js"></script>
 </body>
 
 </html>
