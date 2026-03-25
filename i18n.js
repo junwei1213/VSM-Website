@@ -112,11 +112,11 @@ const translations = {
     nav_restaurants: "餐厅合作",
     nav_download: "下载 App",
 
-    hero_badge: "马来西亚 #1 素食搜索",
-    hero_title_1: "发现马来西亚",
+    hero_badge: "大马 #1 素食搜索",
+    hero_title_1: "发现大马",
     hero_title_hl: "素食",
     hero_title_2: "美食",
-    hero_desc: "搜索全马 2,000+ 素食与纯素餐厅。从隐藏美食到热门餐厅，您的下一顿素食就在指尖。",
+    hero_desc: "搜索大马 2,000+ 素食与纯素餐厅。从隐藏美食到热门餐厅，您的下一顿素食就在指尖。",
     hero_cta_download: "免费下载 App",
     hero_cta_learn: "了解更多",
     hero_stat_restaurants: "家餐厅",
@@ -144,7 +144,7 @@ const translations = {
 
     how_label: "使用方法",
     how_title: "3 步找到您的素食",
-    how_desc: "在马来西亚找素食从未如此简单。",
+    how_desc: "在大马找素食从未如此简单。",
     how_step1_title: "下载 App",
     how_step1_desc: "在 iOS 或 Android 免费下载 GoVeggie。用 Google、Apple 或 Facebook 几秒钟创建账号。",
     how_step2_title: "搜索或浏览",
@@ -153,17 +153,17 @@ const translations = {
     how_step3_desc: "一键导航前往，享受美食，与朋友和社区分享您的最爱。",
 
     stats_label: "影响力",
-    stats_title: "受到马来西亚素食社区的信赖",
-    stats_desc: "基于马来西亚素食协会 10 年以上的数据积累。",
+    stats_title: "受到大马素食社区的信赖",
+    stats_desc: "基于大马素食协会 10 年以上的数据积累。",
     stats_restaurants: "家已验证餐厅",
     stats_community: "Facebook 社区成员",
     stats_downloads: "次 App 下载",
     stats_states: "个州属与直辖区",
 
     about_label: "关于 GoVeggie",
-    about_title: "马来西亚素食协会的项目",
-    about_desc1: "GoVeggie 是 VSM（马来西亚素食协会）的数字化项目，这是一个致力于在全国推广素食生活的社区。",
-    about_desc2: "我们的使命很简单：让马来西亚任何人都能轻松找到美味的素食，无论是坚定的素食者还是好奇的初次尝试者。",
+    about_title: "大马素食协会的项目",
+    about_desc1: "GoVeggie 是 VSM（大马素食协会）的数字化项目，这是一个致力于在全国推广素食生活的社区。",
+    about_desc2: "我们的使命很简单：让大马任何人都能轻松找到美味的素食，无论是坚定的素食者还是好奇的初次尝试者。",
     about_free_title: "永久免费",
     about_free_desc: "对所有用户永久免费",
     about_comm_title: "社区优先",
@@ -175,7 +175,7 @@ const translations = {
 
     vendor_label: "餐厅合作",
     vendor_title: "让您的餐厅登上 GoVeggie",
-    vendor_desc: "加入马来西亚最大的素食餐厅目录。触达 260,000+ 正在寻找素食的美食爱好者。",
+    vendor_desc: "加入大马最大的素食餐厅目录。触达 260,000+ 正在寻找素食的美食爱好者。",
     vendor_perk1: "免费基础上架",
     vendor_perk2: "触达 10 万+ App 用户",
     vendor_perk3: "管理您的页面",
@@ -189,7 +189,7 @@ const translations = {
     dl_google: "下载于",
     dl_google_name: "Google Play",
 
-    footer_desc: "马来西亚素食协会 (VSM) 的项目。自 2015 年起让全马人都能轻松享受素食。",
+    footer_desc: "大马素食协会 (VSM) 的项目。自 2015 年起让全马人都能轻松享受素食。",
     footer_app: "App",
     footer_features: "功能",
     footer_download: "下载",
@@ -199,7 +199,7 @@ const translations = {
     footer_for_restaurants: "餐厅合作",
     footer_about_vsm: "关于 VSM",
     footer_contact: "联系我们",
-    footer_copyright: "2026 马来西亚素食协会。保留所有权利。"
+    footer_copyright: "2026 大马素食协会。保留所有权利。"
   },
 
   ms: {
