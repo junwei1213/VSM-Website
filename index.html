@@ -818,30 +818,27 @@
     }
 
     .feature-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--green-50);
-      color: var(--green-600);
-      border-radius: var(--radius-sm);
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid var(--green-100);
+      position: relative;
     }
 
     .feature-card:hover .feature-icon {
-      background: var(--green-600);
-      color: #fff;
-      transform: scale(1.08) rotate(3deg);
-      border-color: var(--green-600);
-      box-shadow: var(--shadow-green);
+      transform: scale(1.1) rotate(-5deg);
     }
 
-    .feature-card:hover .feature-icon svg {
-      stroke: #fff !important;
-    }
+    .feature-card:nth-child(1) .feature-icon { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+    .feature-card:nth-child(2) .feature-icon { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+    .feature-card:nth-child(3) .feature-icon { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+    .feature-card:nth-child(4) .feature-icon { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+    .feature-card:nth-child(5) .feature-icon { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+    .feature-card:nth-child(6) .feature-icon { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
 
     .feature-card h3 {
       font-size: 1.3rem;
@@ -1888,58 +1885,80 @@
       </div>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg></div>
+          <div class="feature-icon">
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 4C17.4 4 12 9.4 12 16C12 26 24 44 24 44C24 44 36 26 36 16C36 9.4 30.6 4 24 4Z" fill="#16a34a"/>
+              <circle cx="24" cy="16" r="6" fill="#fff"/>
+              <circle cx="24" cy="16" r="3" fill="#22c55e"/>
+              <path d="M18 14L22 18L30 10" stroke="#166534" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+            </svg>
+          </div>
           <h3 data-i18n="feat_gps_title">GPS Restaurant Finder</h3>
           <p><span data-i18n="feat_gps_desc">Find vegetarian restaurants near you instantly with precise Google Maps integration. Sort by distance to discover hidden gems in every alley.</span></p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg></div>
+          <div class="feature-icon">
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="14" fill="#3b82f6" opacity="0.2"/>
+              <circle cx="20" cy="20" r="10" fill="#3b82f6" opacity="0.3"/>
+              <circle cx="20" cy="20" r="10" stroke="#2563eb" stroke-width="3" fill="none"/>
+              <line x1="28" y1="28" x2="40" y2="40" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+              <path d="M16 20H24M20 16V24" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3 data-i18n="feat_search_title">Smart Search & Filters</h3>
           <p><span data-i18n="feat_search_desc">Filter by state, meal time, price range, pure vegan, no allium, and more. Find exactly what you're craving in seconds.</span></p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg></div>
+          <div class="feature-icon">
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 42L5.8 24.6C1.4 20.2 1.4 13 5.8 8.6C10.2 4.2 17.4 4.2 21.8 8.6L24 10.8L26.2 8.6C30.6 4.2 37.8 4.2 42.2 8.6C46.6 13 46.6 20.2 42.2 24.6L24 42Z" fill="#ec4899"/>
+              <path d="M24 36L10 22.6C7.2 19.8 7.2 15.2 10 12.4C12.8 9.6 17.4 9.6 20.2 12.4L24 16.2L27.8 12.4C30.6 9.6 35.2 9.6 38 12.4C40.8 15.2 40.8 19.8 38 22.6L24 36Z" fill="#f472b6"/>
+              <circle cx="18" cy="18" r="3" fill="#fff" opacity="0.5"/>
+            </svg>
+          </div>
           <h3 data-i18n="feat_fav_title">Save Favourites</h3>
           <p><span data-i18n="feat_fav_desc">Bookmark restaurants you love and access them anytime. Your personal veggie food list, synced across devices.</span></p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg></div>
+          <div class="feature-icon">
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="40" height="32" rx="4" fill="#f59e0b" opacity="0.2"/>
+              <rect x="6" y="10" width="36" height="28" rx="3" fill="#fbbf24"/>
+              <rect x="6" y="10" width="36" height="28" rx="3" stroke="#f59e0b" stroke-width="2" fill="none"/>
+              <circle cx="16" cy="20" r="4" fill="#fff"/>
+              <path d="M6 34L16 26L22 30L32 20L42 28V36C42 37.7 40.7 38 39 38H9C7.3 38 6 37.7 6 36V34Z" fill="#fff" opacity="0.6"/>
+              <circle cx="34" cy="16" r="2" fill="#fff"/>
+            </svg>
+          </div>
           <h3 data-i18n="feat_photo_title">Photos & Details</h3>
           <p><span data-i18n="feat_photo_desc">Browse real food photos, menus, opening hours, and contact details. Know what to expect before you visit.</span></p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="3 11 22 2 13 21 11 13 3 11" />
-            </svg></div>
+          <div class="feature-icon">
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 22L42 4L28 44L22 26L6 22Z" fill="#6366f1" opacity="0.2"/>
+              <path d="M8 22L40 6L28 40L23 25L8 22Z" fill="#818cf8"/>
+              <path d="M8 22L40 6" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="23" cy="25" r="3" fill="#fff"/>
+              <path d="M14 30L20 28" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3 data-i18n="feat_nav_title">Navigation Integration</h3>
           <p><span data-i18n="feat_nav_desc">One tap to open Google Maps or Waze for turn-by-turn directions. Get there easily with your preferred navigation app.</span></p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg></div>
+          <div class="feature-icon">
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="16" r="8" fill="#10b981" opacity="0.3"/>
+              <circle cx="18" cy="16" r="6" fill="#34d399"/>
+              <circle cx="18" cy="14" r="3" fill="#fff" opacity="0.5"/>
+              <path d="M6 40C6 33.4 11.4 28 18 28C24.6 28 30 33.4 30 40" fill="#34d399"/>
+              <circle cx="34" cy="14" r="5" fill="#6ee7b7"/>
+              <path d="M24 38C24 32.5 28.5 28 34 28C39.5 28 44 32.5 44 38" fill="#6ee7b7"/>
+              <path d="M20 40H36" stroke="#065f46" stroke-width="2" stroke-linecap="round" opacity="0.2"/>
+            </svg>
+          </div>
           <h3 data-i18n="feat_community_title">Community Powered</h3>
           <p><span data-i18n="feat_community_desc">Submit new restaurants, report issues, and help keep data accurate. Built by the community, for the community.</span></p>
         </div>
