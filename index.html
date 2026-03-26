@@ -216,9 +216,12 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
+      transform: translateY(-3px) scale(1.02);
       box-shadow: 0 16px 40px -8px rgba(34, 197, 94, 0.5);
       background: var(--green-600);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
     }
 
     .btn-outline {
@@ -231,7 +234,10 @@
     .btn-outline:hover {
       background: var(--green-50);
       border-color: var(--green-500);
-      transform: translateY(-3px);
+      transform: translateY(-3px) scale(1.02);
+    }
+    .btn-outline:active {
+      transform: translateY(0) scale(0.98);
     }
 
     .btn-dark {
@@ -280,6 +286,7 @@
     }
 
     .hero::before {
+      --p: calc(var(--parallax) * -0.6);
       content: '';
       position: absolute;
       width: 1000px;
@@ -292,6 +299,7 @@
     }
 
     .hero::after {
+      --p: calc(var(--parallax) * -0.3);
       content: '';
       position: absolute;
       width: 600px;
@@ -308,12 +316,12 @@
       0%,
       100% {
         opacity: 0.5;
-        transform: scale(1);
+        transform: translateY(var(--p, 0)) scale(1);
       }
 
       50% {
         opacity: 1;
-        transform: scale(1.1);
+        transform: translateY(var(--p, 0)) scale(1.1);
       }
     }
 
@@ -346,8 +354,7 @@
       color: var(--neutral-900);
       margin-bottom: 28px;
       line-height: 1.05;
-      animation: fade-in-up 0.8s ease 0.1s forwards;
-      opacity: 0;
+      animation: fade-in-up 0.8s ease 0.1s both;
     }
 
     .hero h1 .highlight {
@@ -363,8 +370,7 @@
       margin-bottom: 44px;
       max-width: 520px;
       line-height: 1.8;
-      animation: fade-in-up 0.8s ease 0.2s forwards;
-      opacity: 0;
+      animation: fade-in-up 0.8s ease 0.2s both;
     }
 
     .hero-cta {
@@ -372,8 +378,7 @@
       gap: 18px;
       flex-wrap: wrap;
       margin-bottom: 56px;
-      animation: fade-in-up 0.8s ease 0.3s forwards;
-      opacity: 0;
+      animation: fade-in-up 0.8s ease 0.3s both;
     }
 
     .hero-stats {
@@ -381,8 +386,7 @@
       gap: 56px;
       border-top: 1px solid var(--neutral-200);
       padding-top: 40px;
-      animation: fade-in-up 0.8s ease 0.4s forwards;
-      opacity: 0;
+      animation: fade-in-up 0.8s ease 0.4s both;
     }
 
     .hero-stat h3 {
@@ -402,12 +406,14 @@
     @keyframes fade-in-up {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        filter: blur(8px);
+        transform: translateY(30px) scale(0.96);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        filter: blur(0);
+        transform: translateY(0) scale(1);
       }
     }
 
@@ -416,8 +422,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      animation: fade-in-up 1s ease 0.3s forwards;
-      opacity: 0;
+      animation: fade-in-up 1s ease 0.3s both;
     }
 
     .hero-img {
@@ -454,13 +459,13 @@
 
     .floating-card.card-1 {
       top: 8%;
-      left: -50px;
+      left: 0px;
       animation: float 6s ease-in-out infinite;
     }
 
     .floating-card.card-2 {
       bottom: 12%;
-      right: -40px;
+      right: 0px;
       animation: float 6s ease-in-out infinite 3s;
     }
 
@@ -600,9 +605,24 @@
       background: linear-gradient(90deg, var(--green-400), var(--green-600));
       opacity: 0;
       transition: opacity 0.4s ease;
+      z-index: 2;
     }
 
-    .feature-card:hover::before {
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(34, 197, 94, 0.07), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .feature-card:hover::before, .feature-card:hover::after {
       opacity: 1;
     }
 
@@ -743,9 +763,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+      background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255, 255, 255, 0.15), transparent 40%);
       opacity: 0;
       transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .stat-card:hover::before {
@@ -1341,13 +1362,28 @@
 
     .animate-target {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: blur(8px);
+      transform: translateY(40px) scale(0.96);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .animate-target.animate-in {
       opacity: 1;
-      transform: translateY(0);
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+    
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--green-500);
+      width: 0%;
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+      transition: width 0.1s ease-out;
+      pointer-events: none;
     }
 
     /* Selection styling */
@@ -1359,6 +1395,7 @@
     /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
 
     /* Focus states for accessibility */
@@ -1418,6 +1455,8 @@
 </head>
 
 <body>
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
 
   <!-- NAV -->
   <nav id="nav">
@@ -1652,8 +1691,7 @@
   <section class="section" id="about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-img"><img src="images/about-community.png" alt="Malaysian community sharing vegetarian food"
-            style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);"></div>
+        <img src="images/about-community.png" alt="Malaysian community sharing vegetarian food" class="about-img">
         <div class="about-content">
           <div class="section-label" data-i18n="about_label">About GoVeggie</div>
           <h2 data-i18n="about_title">A Project by the Vegetarian Society of Malaysia</h2>
@@ -1739,7 +1777,7 @@
             <span data-i18n="vendor_perk4">Featured placement options</span>
           </div>
         </div>
-        <a href="mailto:info@goveggiemalaysia.cloud" class="btn btn-primary btn-lg" data-i18n="vendor_cta">Partner With Us</a>
+        <a href="/vendor.html" class="btn btn-primary btn-lg" data-i18n="vendor_cta">Partner With Us</a>
       </div>
     </div>
   </section>
@@ -1816,10 +1854,38 @@
 
     window.addEventListener('scroll', () => {
       lastScrollY = window.scrollY;
+      
+      // Update scroll progress bar
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const scrollBar = document.getElementById('scroll-progress');
+      if (scrollBar) {
+        scrollBar.style.width = scrolled + '%';
+      }
+
       if (!ticking) {
         window.requestAnimationFrame(updateNav);
         ticking = true;
       }
+    });
+
+    // Mouse tracking glow logic for cards
+    document.querySelectorAll('.feature-card, .stat-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+      // Optionally reset the mouse position when leaving so it doesn't stay at edge
+      card.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          card.style.setProperty('--mouse-x', `-500px`);
+          card.style.setProperty('--mouse-y', `-500px`);
+        }, 300);
+      });
     });
 
     // Mobile menu toggle
@@ -1832,19 +1898,7 @@
       document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
     }
 
-    // Smooth scroll with offset for fixed nav
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = a.getAttribute('href');
-        const target = document.querySelector(targetId);
-        if (target) {
-          const navHeight = document.getElementById('nav').offsetHeight;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        }
-      });
-    });
+    // Smooth scroll with offset for fixed nav is handled by CSS scroll-padding-top
 
     // Enhanced animate on scroll with staggered delays
     const observer = new IntersectionObserver(entries => {
