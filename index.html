@@ -7,13 +7,86 @@
   <title>GoVeggie Malaysia - Find Vegetarian & Vegan Restaurants Near You</title>
   <meta name="description"
     content="Malaysia's largest vegetarian restaurant finder. Discover 2,000+ veggie-friendly restaurants across all states. Download the GoVeggie app today.">
-  <meta name="keywords" content="vegetarian, vegan, Malaysia, restaurant finder, plant-based, KL vegetarian, GoVeggie">
-  <meta property="og:title" content="GoVeggie Malaysia - Vegetarian Restaurant Finder">
-  <meta property="og:description" content="Discover 2,000+ vegetarian & vegan restaurants across Malaysia">
+  <meta name="keywords" content="vegetarian restaurant Malaysia, vegan food Malaysia, plant-based restaurant finder, KL vegetarian, GoVeggie app, halal vegetarian, vegetarian food near me, vegan restaurant Kuala Lumpur, vegetarian delivery Malaysia">
+  <link rel="canonical" href="https://goveggiemalaysia.cloud/">
+  <link rel="alternate" hreflang="en" href="https://goveggiemalaysia.cloud/">
+  <link rel="alternate" hreflang="ms" href="https://goveggiemalaysia.cloud/">
+  <link rel="alternate" hreflang="zh" href="https://goveggiemalaysia.cloud/">
+  <link rel="alternate" hreflang="x-default" href="https://goveggiemalaysia.cloud/">
+  <meta property="og:title" content="GoVeggie Malaysia - Find Vegetarian & Vegan Restaurants Near You">
+  <meta property="og:description" content="Malaysia's largest vegetarian restaurant finder. Discover 2,000+ veggie-friendly restaurants across all states. Download the GoVeggie app today.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://goveggiemalaysia.cloud">
-  <meta property="og:image" content="images/hero-food.png">
+  <meta property="og:image" content="https://goveggiemalaysia.cloud/images/hero-food.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="GoVeggie Malaysia">
+  <meta property="og:locale" content="en_MY">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GoVeggie Malaysia - Find Vegetarian & Vegan Restaurants Near You">
+  <meta name="twitter:description" content="Malaysia's largest vegetarian restaurant finder. Discover 2,000+ veggie-friendly restaurants across all states.">
+  <meta name="twitter:image" content="https://goveggiemalaysia.cloud/images/hero-food.png">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Vegetarian Society of Malaysia">
+  <meta name="geo.region" content="MY">
+  <meta name="geo.placename" content="Malaysia">
   <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GoVeggie Malaysia",
+    "alternateName": "Vegetarian Society of Malaysia",
+    "url": "https://goveggiemalaysia.cloud",
+    "logo": "https://goveggiemalaysia.cloud/images/logo.png",
+    "description": "Malaysia's largest vegetarian restaurant finder. Discover 2,000+ veggie-friendly restaurants across all states.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "MY"
+    },
+    "sameAs": [
+      "https://www.facebook.com/groups/781347675284086/"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GoVeggie Malaysia",
+    "operatingSystem": "Android, iOS",
+    "applicationCategory": "LifestyleApplication",
+    "description": "Find vegetarian and vegan restaurants across Malaysia. Browse 2,000+ listings with photos, menus, and directions.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MYR"
+    },
+    "installUrl": [
+      "https://apps.apple.com/my/app/goveggie-malaysia/id1183783738",
+      "https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "ratingCount": "500"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "GoVeggie Malaysia",
+    "url": "https://goveggiemalaysia.cloud",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://goveggiemalaysia.cloud/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -441,57 +514,83 @@
 
     .floating-card {
       position: absolute;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: var(--radius-sm);
-      padding: 18px 28px;
-      box-shadow: var(--shadow-lg);
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 16px 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
       z-index: 3;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
     }
 
     .floating-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: var(--shadow-xl);
+      transform: translateY(-6px) scale(1.04) !important;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .floating-card.card-1 {
-      top: 8%;
-      left: 0px;
-      animation: float 6s ease-in-out infinite;
+      top: 5%;
+      left: -10px;
+      animation: floatBounce1 5s ease-in-out infinite;
     }
 
     .floating-card.card-2 {
-      bottom: 12%;
-      right: 0px;
-      animation: float 6s ease-in-out infinite 3s;
+      bottom: 8%;
+      right: -10px;
+      animation: floatBounce2 6s ease-in-out infinite;
     }
 
-    @keyframes float {
+    .floating-card.card-3 {
+      top: 55%;
+      left: -20px;
+      animation: floatBounce3 7s ease-in-out infinite;
+    }
 
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-12px);
-      }
+    @keyframes floatBounce1 {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      25% { transform: translateY(-14px) rotate(0deg); }
+      75% { transform: translateY(4px) rotate(-2deg); }
+    }
+    @keyframes floatBounce2 {
+      0%, 100% { transform: translateY(0) rotate(1deg); }
+      30% { transform: translateY(6px) rotate(0deg); }
+      60% { transform: translateY(-16px) rotate(2deg); }
+    }
+    @keyframes floatBounce3 {
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      40% { transform: translateX(8px) rotate(1deg); }
+      80% { transform: translateX(-4px) rotate(-1deg); }
     }
 
     .floating-card h5 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: var(--neutral-900);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .floating-card p {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       color: var(--neutral-500);
       font-weight: 500;
+    }
+
+    .float-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .float-emoji {
+      font-size: 20px;
+      line-height: 1;
     }
 
     .section {
@@ -1535,26 +1634,43 @@
       </div>
       <div class="hero-visual">
         <div class="floating-card card-1">
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-            <div style="width: 8px; height: 8px; background: var(--green-500); border-radius: 50%;"></div>
-            <h5 style="margin: 0;" data-i18n="hero_float_vegan">Pure Vegan</h5>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="float-emoji">🌱</span>
+            <div>
+              <span class="float-tag" style="background:#f0fdf4;color:#166534;">Pure Vegan</span>
+              <p style="margin-top:4px;display:flex;align-items:center;gap:4px;">
+                Green Leaf Kitchen
+                <span style="color:#f59e0b;font-weight:700;">4.8</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#f59e0b" stroke="none">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/>
+                </svg>
+              </p>
+            </div>
           </div>
-          <p style="display: flex; align-items: center; gap: 4px;">Green Leaf Kitchen <span
-              style="color: var(--green-600);">4.8</span> <svg width="12" height="12" viewBox="0 0 24 24"
-              fill="var(--green-500)" stroke="none">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z" />
-            </svg></p>
         </div>
         <div class="floating-card card-2">
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2.5">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <h5 style="margin: 0;" data-i18n="hero_float_away">0.3km away</h5>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="float-emoji">📍</span>
+            <div>
+              <h5 style="margin:0;" data-i18n="hero_float_away">0.3km away</h5>
+              <p style="display:flex;align-items:center;gap:6px;">
+                <span class="float-tag" style="background:#f0fdf4;color:#166534;">
+                  <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>
+                  Open Now
+                </span>
+                <span style="color:#a3a3a3;">until 9 PM</span>
+              </p>
+            </div>
           </div>
-          <p data-i18n="hero_float_open">Open until 9:00 PM</p>
+        </div>
+        <div class="floating-card card-3">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="float-emoji">🍜</span>
+            <div>
+              <h5 style="margin:0;">2,000+</h5>
+              <p>Restaurants across Malaysia</p>
+            </div>
+          </div>
         </div>
         <img src="images/hero-food.png" alt="Malaysian vegetarian dishes with GoVeggie app" class="hero-img">
       </div>
@@ -1754,7 +1870,7 @@
   <section class="section vendor-section" id="vendors">
     <div class="container">
       <div class="vendor-card" style="overflow:hidden; position:relative;">
-        <img src="images/restaurant-scene.png" alt=""
+        <img src="images/restaurant-scene.png" alt="Vegetarian restaurant scene in Malaysia"
           style="position:absolute;top:0;left:0;width:100%;height:200px;object-fit:cover;opacity:0.12;pointer-events:none;">
         <div class="section-label" style="position:relative;" data-i18n="vendor_label">For Restaurant Owners</div>
         <h2 style="position:relative;" data-i18n="vendor_title">Get Your Restaurant on GoVeggie</h2>
