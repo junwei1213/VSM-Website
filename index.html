@@ -955,10 +955,18 @@
     }
 
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+    }
+
+    .about-top {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
     .about-img {
@@ -971,22 +979,49 @@
     }
 
     .about-img:hover {
-      transform: scale(1.02);
+      transform: scale(1.02) rotate(-0.5deg);
+    }
+
+    .about-content {
+      text-align: left;
     }
 
     .about-content h2 {
-      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
       font-weight: 800;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       color: var(--neutral-900);
       letter-spacing: -0.03em;
     }
 
     .about-content p {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       color: var(--neutral-500);
-      margin-bottom: 22px;
-      line-height: 1.8;
+      margin-bottom: 18px;
+      line-height: 1.75;
+    }
+
+    .about-trust {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: var(--green-50);
+      border-radius: 100px;
+      border: 1px solid var(--green-200);
+    }
+
+    .about-trust img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+
+    .about-trust span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green-800);
     }
 
     .about-values {
@@ -1407,10 +1442,12 @@
         display: none;
       }
 
-      .about-grid {
+      .about-top {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 32px;
+        text-align: center;
       }
+      .about-content { text-align: center; }
 
       .footer-inner {
         grid-template-columns: 1fr 1fr;
@@ -1949,13 +1986,20 @@
   <section class="section" id="about">
     <div class="container">
       <div class="about-grid">
-        <img src="images/about-community.png" alt="Malaysian community sharing vegetarian food" class="about-img">
-        <div class="about-content">
-          <div class="section-label" data-i18n="about_label">About GoVeggie</div>
-          <h2 data-i18n="about_title">A Project by the Vegetarian Society of Malaysia</h2>
-          <p><span data-i18n="about_desc1">GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a community dedicated to promoting plant-based living across the nation.</span></p>
-          <p><span data-i18n="about_desc2">Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.</span></p>
-          <div class="about-values">
+        <div class="about-top">
+          <img src="images/about-community.png" alt="Malaysian community sharing vegetarian food" class="about-img">
+          <div class="about-content">
+            <div class="section-label" data-i18n="about_label">About GoVeggie</div>
+            <h2 data-i18n="about_title">A Project by the Vegetarian Society of Malaysia</h2>
+            <p><span data-i18n="about_desc1">GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a community dedicated to promoting plant-based living across the nation.</span></p>
+            <p><span data-i18n="about_desc2">Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.</span></p>
+            <div class="about-trust">
+              <img src="images/logo.png" alt="VSM">
+              <span>Backed by VSM since 2015</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-values">
             <div class="about-value">
               <div class="about-value-icon">
                 <svg width="64" height="64" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -2060,7 +2104,6 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
