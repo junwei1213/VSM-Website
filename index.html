@@ -858,67 +858,70 @@
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 60px;
+      gap: 28px;
       position: relative;
-    }
-
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 52px;
-      left: 18%;
-      right: 18%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--green-200), var(--green-300), var(--green-200), transparent);
-      z-index: 1;
-      border-radius: 3px;
     }
 
     .step {
-      text-align: center;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      border: 1px solid var(--neutral-200);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      z-index: 2;
+    }
+
+    .step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+
+    .step-img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background: linear-gradient(135deg, var(--green-50), #f0fdf4);
+      display: block;
+      padding: 16px;
+    }
+
+    .step-body {
+      padding: 24px 28px 28px;
     }
 
     .step-number {
-      width: 100px;
-      height: 100px;
-      background: var(--warm-white);
-      color: var(--green-600);
-      border: 3px solid var(--green-100);
-      border-radius: 50%;
-      display: flex;
+      width: 40px;
+      height: 40px;
+      background: var(--green-600);
+      color: #fff;
+      border-radius: 12px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 1.1rem;
       font-weight: 800;
       font-family: 'Outfit';
-      margin: 0 auto 36px;
-      box-shadow: var(--shadow-lg);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 14px;
+      transition: all 0.4s ease;
     }
 
     .step:hover .step-number {
-      background: var(--green-600);
-      color: #fff;
-      transform: scale(1.12);
-      box-shadow: var(--shadow-green);
-      border-color: var(--green-600);
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
     }
 
     .step h3 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
       color: var(--neutral-900);
     }
 
     .step p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--neutral-500);
-      max-width: 280px;
-      margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
     .stats-grid {
@@ -1462,11 +1465,7 @@
 
       .steps {
         grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .steps::before {
-        display: none;
+        gap: 20px;
       }
 
       .about-top {
@@ -1949,20 +1948,52 @@
         <p data-i18n="how_desc">Finding plant-based food in Malaysia has never been easier.</p>
       </div>
       <div class="steps">
+        <style>
+          .steps::before { display: none !important; }
+          .step-arrow {
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 20px);
+            transform: translateY(-50%);
+            width: 80px;
+            height: 24px;
+            pointer-events: none;
+            overflow: visible;
+            z-index: 0;
+            opacity: 0.6;
+          }
+          @media (max-width: 767px) {
+            .step-arrow {
+              top: calc(100% + 15px);
+              left: 50%;
+              transform: translateX(-50%) rotate(90deg);
+              width: 40px;
+            }
+          }
+        </style>
         <div class="step">
-          <div class="step-number">1</div>
-          <h3 data-i18n="how_step1_title">Download the App</h3>
-          <p data-i18n="how_step1_desc">Get GoVeggie free on iOS or Android. Create an account in seconds with Google, Apple, or Facebook.</p>
+          <img src="images/onboarding/step1_download_1774523146858.png" class="step-img" alt="Step 1 - Download the App">
+          <div class="step-body">
+            <div class="step-number">1</div>
+            <h3 data-i18n="how_step1_title">Download the App</h3>
+            <p data-i18n="how_step1_desc">Get GoVeggie free on iOS or Android. Create an account in seconds with Google, Apple, or Facebook.</p>
+          </div>
         </div>
         <div class="step">
-          <div class="step-number">2</div>
-          <h3 data-i18n="how_step2_title">Search or Browse</h3>
-          <p><span data-i18n="how_step2_desc">Use GPS to find nearby restaurants or search by name, state, or cuisine type. Apply filters to match your diet.</span></p>
+          <img src="images/onboarding/step2_search_1774523163067.png" class="step-img" alt="Step 2 - Search or Browse">
+          <div class="step-body">
+            <div class="step-number">2</div>
+            <h3 data-i18n="how_step2_title">Search or Browse</h3>
+            <p><span data-i18n="how_step2_desc">Use GPS to find nearby restaurants or search by name, state, or cuisine type. Apply filters to match your diet.</span></p>
+          </div>
         </div>
         <div class="step">
-          <div class="step-number">3</div>
-          <h3 data-i18n="how_step3_title">Eat & Share</h3>
-          <p><span data-i18n="how_step3_desc">Navigate there with one tap, enjoy your meal, and share your favourite spots with friends and the community.</span></p>
+          <img src="images/onboarding/step3_eat_1774523177211.png" class="step-img" alt="Step 3 - Eat & Share">
+          <div class="step-body">
+            <div class="step-number">3</div>
+            <h3 data-i18n="how_step3_title">Eat & Share</h3>
+            <p><span data-i18n="how_step3_desc">Navigate there with one tap, enjoy your meal, and share your favourite spots with friends and the community.</span></p>
+          </div>
         </div>
       </div>
     </div>
