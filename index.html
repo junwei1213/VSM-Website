@@ -251,6 +251,20 @@
       color: var(--green-700);
     }
 
+    .nav-links .btn.btn-primary {
+      padding: 10px 24px;
+      font-size: 0.88rem;
+      color: #fff !important;
+      box-shadow: 0 4px 14px -4px rgba(34, 197, 94, 0.4);
+      border-radius: 100px;
+    }
+
+    .nav-links .btn.btn-primary:hover {
+      color: #fff !important;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 20px -4px rgba(34, 197, 94, 0.5);
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -303,6 +317,7 @@
       color: var(--green-700);
       border: 2px solid var(--green-300);
       backdrop-filter: blur(8px);
+      font-weight: 600;
     }
 
     .btn-outline:hover {
@@ -437,13 +452,16 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      font-style: italic;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 18px;
       color: var(--neutral-500);
       margin-bottom: 44px;
-      max-width: 520px;
+      max-width: 540px;
+      margin-left: 0;
+      margin-right: auto;
       line-height: 1.8;
       animation: fade-in-up 0.8s ease 0.2s both;
     }
@@ -593,6 +611,12 @@
     .float-emoji {
       font-size: 20px;
       line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
     }
 
     .section {
@@ -883,7 +907,7 @@
     .stat-card h3 {
       font-size: clamp(2.75rem, 4.5vw, 3.75rem);
       font-weight: 800;
-      color: var(--green-300);
+      color: #fff;
       margin-bottom: 10px;
       letter-spacing: -0.04em;
       position: relative;
@@ -891,7 +915,7 @@
 
     .stat-card p {
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.85);
+      color: #fff;
       font-weight: 600;
       position: relative;
     }
@@ -934,63 +958,75 @@
     .about-values {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 16px;
       margin-top: 44px;
     }
 
     .about-value {
       display: flex;
       align-items: flex-start;
-      gap: 18px;
-      padding: 20px;
-      background: var(--warm-white);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--neutral-200);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 16px;
+      padding: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(34, 197, 94, 0.12);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 0 0 1px rgba(34,197,94,0.04);
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-value::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(34,197,94,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
     }
 
     .about-value:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--green-200);
-      background: #fff;
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(34, 197, 94, 0.15), 0 4px 12px rgba(0,0,0,0.06);
+      border-color: rgba(34, 197, 94, 0.25);
+    }
+
+    .about-value:hover::before {
+      opacity: 1;
     }
 
     .about-value-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--green-50);
-      color: var(--green-600);
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      border: 1px solid var(--green-100);
-      transition: all 0.4s ease;
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
 
     .about-value:hover .about-value-icon {
-      background: var(--green-600);
-      border-color: var(--green-600);
-    }
-
-    .about-value:hover .about-value-icon svg {
-      stroke: #fff !important;
+      transform: scale(1.1) rotate(-3deg);
     }
 
     .about-value h4 {
       font-size: 1.05rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--neutral-900);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
+      position: relative;
     }
 
     .about-value p {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--neutral-500);
       line-height: 1.6;
+      position: relative;
     }
 
     .vendor-section {
@@ -1511,7 +1547,7 @@
       gap: 4px;
       margin-left: 8px;
       background: var(--neutral-100);
-      border-radius: 10px;
+      border-radius: 100px;
       padding: 3px;
     }
     .lang-btn {
@@ -1621,15 +1657,15 @@
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <h3>2,000+</h3>
+            <h3 data-count="2000" data-suffix="+" data-comma="true">0</h3>
             <p data-i18n="hero_stat_restaurants">Restaurants</p>
           </div>
           <div class="hero-stat">
-            <h3>16</h3>
+            <h3 data-count="16">0</h3>
             <p data-i18n="hero_stat_states">States Covered</p>
           </div>
           <div class="hero-stat">
-            <h3>100K+</h3>
+            <h3 data-count="100" data-suffix="K+">0</h3>
             <p data-i18n="hero_stat_downloads">Downloads</p>
           </div>
         </div>
@@ -1637,7 +1673,27 @@
       <div class="hero-visual">
         <div class="floating-card card-1">
           <div style="display:flex;align-items:center;gap:10px;">
-            <span class="float-emoji">🌱</span>
+            <span class="float-emoji">
+              <svg width="48" height="48" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="bgSeedling" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#dcfce7" />
+                    <stop offset="100%" stop-color="#bbf7d0" />
+                  </linearGradient>
+                  <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4ade80" />
+                    <stop offset="100%" stop-color="#16a34a" />
+                  </linearGradient>
+                  <filter id="shadow1" x="-10%" y="-10%" width="120%" height="120%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#16a34a" flood-opacity="0.3" />
+                  </filter>
+                </defs>
+                <rect x="10" y="10" width="100" height="100" rx="28" fill="url(#bgSeedling)" />
+                <path d="M60 90 Q55 70 60 40" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round" />
+                <path d="M60 75 C85 75, 95 45, 95 30 C75 30, 65 45, 60 75 Z" fill="url(#leafGrad)" filter="url(#shadow1)"/>
+                <path d="M58 55 C35 55, 25 35, 25 25 C45 25, 55 35, 58 55 Z" fill="#22c55e" />
+              </svg>
+            </span>
             <div>
               <span class="float-tag" style="background:#f0fdf4;color:#166534;">Pure Vegan</span>
               <p style="margin-top:4px;display:flex;align-items:center;gap:4px;">
@@ -1652,7 +1708,26 @@
         </div>
         <div class="floating-card card-2">
           <div style="display:flex;align-items:center;gap:10px;">
-            <span class="float-emoji">📍</span>
+            <span class="float-emoji">
+              <svg width="48" height="48" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="bgPin" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fee2e2" />
+                    <stop offset="100%" stop-color="#fecaca" />
+                  </linearGradient>
+                  <linearGradient id="pinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f87171" />
+                    <stop offset="100%" stop-color="#dc2626" />
+                  </linearGradient>
+                  <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#dc2626" flood-opacity="0.3" />
+                  </filter>
+                </defs>
+                <rect x="10" y="10" width="100" height="100" rx="28" fill="url(#bgPin)" />
+                <path d="M60 90 C60 90, 35 60, 35 40 A25 25 0 0 1 85 40 C85 60, 60 90, 60 90 Z" fill="url(#pinGrad)" filter="url(#shadow2)"/>
+                <circle cx="60" cy="40" r="10" fill="#ffffff" />
+              </svg>
+            </span>
             <div>
               <h5 style="margin:0;" data-i18n="hero_float_away">0.3km away</h5>
               <p style="display:flex;align-items:center;gap:6px;">
@@ -1667,7 +1742,31 @@
         </div>
         <div class="floating-card card-3">
           <div style="display:flex;align-items:center;gap:10px;">
-            <span class="float-emoji">🍜</span>
+            <span class="float-emoji">
+              <svg width="48" height="48" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="bgBowl" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef3c7" />
+                    <stop offset="100%" stop-color="#fde68a" />
+                  </linearGradient>
+                  <linearGradient id="bowlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f59e0b" />
+                    <stop offset="100%" stop-color="#d97706" />
+                  </linearGradient>
+                  <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#d97706" flood-opacity="0.3" />
+                  </filter>
+                </defs>
+                <rect x="10" y="10" width="100" height="100" rx="28" fill="url(#bgBowl)" />
+                <line x1="25" y1="30" x2="85" y2="45" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+                <line x1="25" y1="40" x2="85" y2="55" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+                <path d="M35 50 Q45 25 55 50" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" />
+                <path d="M45 50 Q55 20 65 50" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" />
+                <path d="M55 50 Q65 15 75 50" fill="none" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" />
+                <path d="M25 55 C25 85, 40 95, 60 95 C80 95, 95 85, 95 55 Z" fill="url(#bowlGrad)" filter="url(#shadow3)" />
+                <path d="M30 55 L90 55" stroke="#fffbeb" stroke-width="3" />
+              </svg>
+            </span>
             <div>
               <h5 style="margin:0;">2,000+</h5>
               <p>Restaurants across Malaysia</p>
@@ -1745,6 +1844,9 @@
           <p><span data-i18n="feat_community_desc">Submit new restaurants, report issues, and help keep data accurate. Built by the community, for the community.</span></p>
         </div>
       </div>
+      <div style="text-align:center;margin-top:48px;">
+        <a href="https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog" class="btn btn-primary btn-lg" data-i18n="features_cta">Download the App</a>
+      </div>
     </div>
   </section>
 
@@ -1786,20 +1888,20 @@
       </div>
       <div class="stats-grid">
         <div class="stat-card">
-          <h3>2,168</h3>
+          <h3 data-count="2168" data-comma="true">0</h3>
           <p data-i18n="stats_restaurants">Verified Restaurants</p>
         </div>
         <div class="stat-card">
-          <h3>260K+</h3>
+          <h3 data-count="260" data-suffix="K+">0</h3>
           <p data-i18n="stats_community">Facebook Community</p>
         </div>
         <div class="stat-card">
-          <h3>100K+</h3>
+          <h3 data-count="100" data-suffix="K+">0</h3>
           <p data-i18n="stats_downloads">App Downloads</p>
         </div>
         <div class="stat-card">
-          <h3>16</h3>
-          <p data-i18n="stats_states">States & Territories</p>
+          <h3 data-count="16">0</h3>
+          <p data-i18n="stats_states">States &amp; Territories</p>
         </div>
       </div>
     </div>
@@ -1817,46 +1919,103 @@
           <p><span data-i18n="about_desc2">Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.</span></p>
           <div class="about-values">
             <div class="about-value">
-              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="var(--green-600)" stroke-width="2.5">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg></div>
+              <div class="about-value-icon">
+                <svg width="52" height="52" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#dcfce7" />
+                      <stop offset="100%" stop-color="#bbf7d0" />
+                    </linearGradient>
+                    <linearGradient id="shieldFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#4ade80" />
+                      <stop offset="100%" stop-color="#16a34a" />
+                    </linearGradient>
+                    <filter id="shieldShadow"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#16a34a" flood-opacity="0.25" /></filter>
+                  </defs>
+                  <rect x="10" y="10" width="100" height="100" rx="26" fill="url(#shieldBg)" />
+                  <path d="M60 25 L85 38 V60 C85 80, 60 95, 60 95 C60 95, 35 80, 35 60 V38 Z" fill="url(#shieldFill)" filter="url(#shieldShadow)" />
+                  <polyline points="48 60 56 68 74 50" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
               <div>
                 <h4 data-i18n="about_free_title">Always Free</h4>
                 <p data-i18n="about_free_desc">Free for all users, forever</p>
               </div>
             </div>
             <div class="about-value">
-              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="var(--green-600)" stroke-width="2.5">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                </svg></div>
+              <div class="about-value-icon">
+                <svg width="52" height="52" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="peopleBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ede9fe" />
+                      <stop offset="100%" stop-color="#ddd6fe" />
+                    </linearGradient>
+                    <linearGradient id="peopleFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#a78bfa" />
+                      <stop offset="100%" stop-color="#7c3aed" />
+                    </linearGradient>
+                    <filter id="peopleShadow"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#7c3aed" flood-opacity="0.25" /></filter>
+                  </defs>
+                  <rect x="10" y="10" width="100" height="100" rx="26" fill="url(#peopleBg)" />
+                  <circle cx="50" cy="45" r="12" fill="url(#peopleFill)" filter="url(#peopleShadow)" />
+                  <path d="M30 85 C30 68, 40 60, 50 60 C60 60, 70 68, 70 85" fill="url(#peopleFill)" />
+                  <circle cx="78" cy="42" r="9" fill="#a78bfa" />
+                  <path d="M62 82 C62 68, 70 62, 78 62 C86 62, 94 68, 94 82" fill="#a78bfa" />
+                </svg>
+              </div>
               <div>
                 <h4 data-i18n="about_comm_title">Community First</h4>
                 <p data-i18n="about_comm_desc">Volunteer-driven with 10+ years of data</p>
               </div>
             </div>
             <div class="about-value">
-              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="var(--green-600)" stroke-width="2.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg></div>
+              <div class="about-value-icon">
+                <svg width="52" height="52" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="globeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#dbeafe" />
+                      <stop offset="100%" stop-color="#bfdbfe" />
+                    </linearGradient>
+                    <linearGradient id="globeFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#60a5fa" />
+                      <stop offset="100%" stop-color="#2563eb" />
+                    </linearGradient>
+                    <filter id="globeShadow"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2563eb" flood-opacity="0.25" /></filter>
+                  </defs>
+                  <rect x="10" y="10" width="100" height="100" rx="26" fill="url(#globeBg)" />
+                  <circle cx="60" cy="60" r="28" fill="url(#globeFill)" filter="url(#globeShadow)" />
+                  <ellipse cx="60" cy="60" rx="14" ry="28" fill="none" stroke="#fff" stroke-width="2.5" opacity="0.6" />
+                  <line x1="32" y1="60" x2="88" y2="60" stroke="#fff" stroke-width="2.5" opacity="0.6" />
+                  <path d="M35 45 Q60 40 85 45" fill="none" stroke="#fff" stroke-width="2" opacity="0.4" />
+                  <path d="M35 75 Q60 80 85 75" fill="none" stroke="#fff" stroke-width="2" opacity="0.4" />
+                </svg>
+              </div>
               <div>
                 <h4 data-i18n="about_msia_title">All of Malaysia</h4>
-                <p data-i18n="about_msia_desc">Covering every state & territory</p>
+                <p data-i18n="about_msia_desc">Covering every state &amp; territory</p>
               </div>
             </div>
             <div class="about-value">
-              <div class="about-value-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="var(--green-600)" stroke-width="2.5">
-                  <path d="M12 22c-4-3-8-6-8-11a8 8 0 0 1 16 0c0 5-4 8-8 11z" />
-                  <path d="M12 13V7" />
-                  <path d="M9 10l3-3 3 3" />
-                </svg></div>
+              <div class="about-value-icon">
+                <svg width="52" height="52" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="sustainBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d1fae5" />
+                      <stop offset="100%" stop-color="#a7f3d0" />
+                    </linearGradient>
+                    <linearGradient id="sustainFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#34d399" />
+                      <stop offset="100%" stop-color="#059669" />
+                    </linearGradient>
+                    <filter id="sustainShadow"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#059669" flood-opacity="0.25" /></filter>
+                  </defs>
+                  <rect x="10" y="10" width="100" height="100" rx="26" fill="url(#sustainBg)" />
+                  <path d="M60 90 Q55 70 60 45" fill="none" stroke="#065f46" stroke-width="4.5" stroke-linecap="round" />
+                  <path d="M60 65 C80 60, 90 40, 90 28 C72 28, 60 42, 60 65 Z" fill="url(#sustainFill)" filter="url(#sustainShadow)" />
+                  <path d="M58 50 C42 48, 32 35, 32 26 C46 26, 56 36, 58 50 Z" fill="#34d399" />
+                  <circle cx="60" cy="90" r="5" fill="#065f46" />
+                </svg>
+              </div>
               <div>
                 <h4 data-i18n="about_sustain_title">Sustainability</h4>
                 <p data-i18n="about_sustain_desc">Promoting a greener planet</p>
@@ -2059,6 +2218,46 @@
       if (hero && scrolled < hero.offsetHeight) {
         hero.style.setProperty('--parallax', `${scrolled * 0.3}px`);
       }
+    });
+    // Counter animation
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const useComma = el.dataset.comma === 'true';
+      const duration = 2000;
+      const startTime = performance.now();
+
+      function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+      }
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+        const current = Math.floor(easedProgress * target);
+        
+        el.textContent = (useComma ? current.toLocaleString() : current) + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+          entry.target.dataset.counted = 'true';
+          animateCounter(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('[data-count]').forEach(el => {
+      counterObserver.observe(el);
     });
   </script>
   <script src="i18n.js"></script>
