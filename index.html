@@ -460,21 +460,22 @@
     .hero h1 .highlight::after {
       content: '';
       position: absolute;
-      bottom: 4px;
-      left: -2px;
-      right: -2px;
+      bottom: 8%;
+      left: -3%;
       width: 0;
-      height: 8px;
-      background: linear-gradient(90deg, var(--green-200), var(--green-400));
-      border-radius: 4px;
-      opacity: 0.6;
+      height: 28%;
+      background: var(--green-200);
+      opacity: 0.5;
       z-index: -1;
-      animation: highlightGrow 1s ease-out 0.6s forwards;
+      border-radius: 2px 8px 4px 6px;
+      transform: skewX(-2deg) rotate(-0.5deg);
+      animation: highlightGrow 0.8s ease-out 0.6s forwards;
     }
 
     @keyframes highlightGrow {
-      0% { width: 0; }
-      100% { width: calc(100% + 4px); }
+      0% { width: 0; opacity: 0; }
+      50% { opacity: 0.5; }
+      100% { width: 106%; opacity: 0.5; }
     }
 
     .hero p {
@@ -560,64 +561,73 @@
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
-      padding: 16px 22px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      border-radius: 14px;
+      padding: 12px 16px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
       z-index: 3;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: default;
+      opacity: 0;
+      animation-fill-mode: forwards;
     }
 
     .floating-card:hover {
-      transform: translateY(-6px) scale(1.04) !important;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+      transform: translateY(-4px) scale(1.03) !important;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
     }
 
     .floating-card.card-1 {
-      top: 5%;
-      left: -10px;
-      animation: floatBounce1 5s ease-in-out infinite;
+      top: 2%;
+      left: -30px;
+      animation: fadeSlideIn 0.6s ease-out 1s forwards, floatA 6s ease-in-out 1.6s infinite;
     }
 
     .floating-card.card-2 {
-      bottom: 8%;
-      right: -10px;
-      animation: floatBounce2 6s ease-in-out infinite;
+      bottom: 5%;
+      right: -30px;
+      animation: fadeSlideIn 0.6s ease-out 1.3s forwards, floatB 7s ease-in-out 1.9s infinite;
     }
 
     .floating-card.card-3 {
-      top: 55%;
-      left: -20px;
-      animation: floatBounce3 7s ease-in-out infinite;
+      bottom: 42%;
+      left: -40px;
+      animation: fadeSlideIn 0.6s ease-out 1.6s forwards, floatC 8s ease-in-out 2.2s infinite;
     }
 
-    @keyframes floatBounce1 {
-      0%, 100% { transform: translateY(0) rotate(-1deg); }
-      25% { transform: translateY(-14px) rotate(0deg); }
-      75% { transform: translateY(4px) rotate(-2deg); }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    @keyframes floatBounce2 {
-      0%, 100% { transform: translateY(0) rotate(1deg); }
-      30% { transform: translateY(6px) rotate(0deg); }
-      60% { transform: translateY(-16px) rotate(2deg); }
+
+    @keyframes floatA {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
-    @keyframes floatBounce3 {
-      0%, 100% { transform: translateX(0) rotate(0deg); }
-      40% { transform: translateX(8px) rotate(1deg); }
-      80% { transform: translateX(-4px) rotate(-1deg); }
+    @keyframes floatB {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes floatC {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    @media (max-width: 900px) {
+      .floating-card { display: none; }
     }
 
     .floating-card h5 {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--neutral-900);
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .floating-card p {
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       color: var(--neutral-500);
       font-weight: 500;
+      margin: 0;
     }
 
     .float-tag {
