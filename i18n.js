@@ -75,7 +75,7 @@ const translations = {
 
     // Vendor
     vendor_label: "For Restaurant Owners",
-    vendor_title: "Get Your Restaurant on GoVeggie",
+    vendor_title: "Let Veggie Lovers Find You",
     vendor_desc: "Join Malaysia's largest vegetarian restaurant directory. Reach 260,000+ food lovers actively searching for plant-based dining options.",
     vendor_perk1: "Free basic listing",
     vendor_perk2: "Reach 100K+ app users",
@@ -174,7 +174,7 @@ const translations = {
     about_sustain_desc: "推动更绿色的地球",
 
     vendor_label: "餐厅合作",
-    vendor_title: "让您的餐厅登上 GoVeggie",
+    vendor_title: "让素食爱好者找到你",
     vendor_desc: "加入大马最大的素食餐厅目录。触达 260,000+ 正在寻找素食的美食爱好者。",
     vendor_perk1: "免费基础上架",
     vendor_perk2: "触达 10 万+ App 用户",
@@ -271,7 +271,7 @@ const translations = {
     about_sustain_desc: "Mempromosikan planet yang lebih hijau",
 
     vendor_label: "Untuk Pemilik Restoran",
-    vendor_title: "Sertakan Restoran Anda di GoVeggie",
+    vendor_title: "Biar Pencinta Sayuran Jumpa Anda",
     vendor_desc: "Sertai direktori restoran vegetarian terbesar Malaysia. Capai 260,000+ pencinta makanan yang sedang mencari pilihan makan berasaskan tumbuhan.",
     vendor_perk1: "Penyenaraian asas percuma",
     vendor_perk2: "Capai 100K+ pengguna app",
