@@ -53,7 +53,7 @@ const translations = {
     // Stats
     stats_label: "Impact",
     stats_title: "Trusted by Malaysia's Veggie Community",
-    stats_desc: "Built on 10+ years of data from the Vegetarian Society of Malaysia.",
+    stats_desc: "Built on 10+ years of data from the VSM Facebook community.",
     stats_restaurants: "Verified Restaurants",
     stats_community: "Facebook Community",
     stats_downloads: "App Downloads",
@@ -61,8 +61,8 @@ const translations = {
 
     // About
     about_label: "About GoVeggie",
-    about_title: "A Project by the Vegetarian Society of Malaysia",
-    about_desc1: "GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a community dedicated to promoting plant-based living across the nation.",
+    about_title: "A Project by the VSM Community",
+    about_desc1: "GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a Facebook Group community dedicated to promoting plant-based living across the nation.",
     about_desc2: "Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.",
     about_free_title: "Always Free",
     about_free_desc: "Free for all users, forever",
@@ -92,7 +92,7 @@ const translations = {
     dl_google_name: "Google Play",
 
     // Footer
-    footer_desc: "A project by the Vegetarian Society of Malaysia (VSM). Making plant-based dining accessible to everyone across Malaysia since 2015.",
+    footer_desc: "A project by the VSM Facebook community. Making plant-based dining accessible to everyone across Malaysia since 2015.",
     footer_app: "App",
     footer_features: "Features",
     footer_download: "Download",
@@ -102,7 +102,7 @@ const translations = {
     footer_for_restaurants: "For Restaurants",
     footer_about_vsm: "About VSM",
     footer_contact: "Contact",
-    footer_copyright: "2026 Vegetarian Society of Malaysia. All rights reserved."
+    footer_copyright: "2026 VSM Community. All rights reserved."
   },
 
   zh: {
@@ -154,15 +154,15 @@ const translations = {
 
     stats_label: "影响力",
     stats_title: "受到大马素食社区的信赖",
-    stats_desc: "基于大马素食协会 10 年以上的数据积累。",
+    stats_desc: "基于 VSM Facebook 社区 10 年以上的数据积累。",
     stats_restaurants: "家已验证餐厅",
     stats_community: "Facebook 社区成员",
     stats_downloads: "次 App 下载",
     stats_states: "个州属与直辖区",
 
     about_label: "关于 GoVeggie",
-    about_title: "大马素食协会的项目",
-    about_desc1: "GoVeggie 是 VSM（大马素食协会）的数字化项目，这是一个致力于在全国推广素食生活的社区。",
+    about_title: "VSM 社区项目",
+    about_desc1: "GoVeggie 是 VSM（大马素食协会）的数字化项目，这是一个致力于在全国推广素食生活的 Facebook 群组社区。",
     about_desc2: "我们的使命很简单：让大马任何人都能轻松找到美味的素食，无论是坚定的素食者还是好奇的初次尝试者。",
     about_free_title: "永久免费",
     about_free_desc: "对所有用户永久免费",
@@ -189,7 +189,7 @@ const translations = {
     dl_google: "下载于",
     dl_google_name: "Google Play",
 
-    footer_desc: "大马素食协会 (VSM) 的项目。自 2015 年起让全马人都能轻松享受素食。",
+    footer_desc: "VSM Facebook 社区项目。自 2015 年起让全马人都能轻松享受素食。",
     footer_app: "App",
     footer_features: "功能",
     footer_download: "下载",
@@ -199,7 +199,7 @@ const translations = {
     footer_for_restaurants: "餐厅合作",
     footer_about_vsm: "关于 VSM",
     footer_contact: "联系我们",
-    footer_copyright: "2026 大马素食协会。保留所有权利。"
+    footer_copyright: "2026 VSM 社区。保留所有权利。"
   },
 
   ms: {
@@ -251,15 +251,15 @@ const translations = {
 
     stats_label: "Impak",
     stats_title: "Dipercayai Oleh Komuniti Vegetarian Malaysia",
-    stats_desc: "Dibina atas 10+ tahun data dari Persatuan Vegetarian Malaysia.",
+    stats_desc: "Dibina atas 10+ tahun data dari komuniti Facebook VSM.",
     stats_restaurants: "Restoran Disahkan",
     stats_community: "Komuniti Facebook",
     stats_downloads: "Muat Turun App",
     stats_states: "Negeri & Wilayah",
 
     about_label: "Tentang GoVeggie",
-    about_title: "Projek Oleh Persatuan Vegetarian Malaysia",
-    about_desc1: "GoVeggie adalah inisiatif digital VSM (Persatuan Vegetarian Malaysia), sebuah komuniti yang berdedikasi untuk mempromosikan gaya hidup berasaskan tumbuhan di seluruh negara.",
+    about_title: "Projek Oleh Komuniti VSM",
+    about_desc1: "GoVeggie adalah inisiatif digital VSM (Persatuan Vegetarian Malaysia), sebuah kumpulan Facebook komuniti yang berdedikasi untuk mempromosikan gaya hidup berasaskan tumbuhan di seluruh negara.",
     about_desc2: "Misi kami mudah: menjadikannya mudah untuk sesiapa di Malaysia mencari makanan vegetarian dan vegan yang lazat, sama ada mereka vegan tegar atau yang pertama kali mencuba.",
     about_free_title: "Sentiasa Percuma",
     about_free_desc: "Percuma untuk semua pengguna, selamanya",
@@ -286,7 +286,7 @@ const translations = {
     dl_google: "Dapatkan di",
     dl_google_name: "Google Play",
 
-    footer_desc: "Projek oleh Persatuan Vegetarian Malaysia (VSM). Menjadikan makan vegetarian mudah diakses oleh semua orang di seluruh Malaysia sejak 2015.",
+    footer_desc: "Projek oleh komuniti Facebook VSM. Menjadikan makan vegetarian mudah diakses oleh semua orang di seluruh Malaysia sejak 2015.",
     footer_app: "App",
     footer_features: "Ciri-ciri",
     footer_download: "Muat Turun",
@@ -296,7 +296,7 @@ const translations = {
     footer_for_restaurants: "Untuk Restoran",
     footer_about_vsm: "Tentang VSM",
     footer_contact: "Hubungi",
-    footer_copyright: "2026 Persatuan Vegetarian Malaysia. Hak cipta terpelihara."
+    footer_copyright: "2026 Komuniti VSM. Hak cipta terpelihara."
   }
 };
 

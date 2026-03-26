@@ -28,7 +28,7 @@
   <meta name="twitter:image" content="https://goveggiemalaysia.cloud/images/hero-food.png">
   <meta name="google-site-verification" content="ou6SDBEaF_o4Z6foZwaQ7dM2Ng8-QtiguViNbpQEqQM">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Vegetarian Society of Malaysia">
+  <meta name="author" content="VSM Community">
   <meta name="geo.region" content="MY">
   <meta name="geo.placename" content="Malaysia">
   <link rel="icon" type="image/png" href="images/logo.png">
@@ -38,7 +38,7 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "GoVeggie Malaysia",
-    "alternateName": "Vegetarian Society of Malaysia",
+    "alternateName": "VSM Community",
     "url": "https://goveggiemalaysia.cloud",
     "logo": "https://goveggiemalaysia.cloud/images/logo.png",
     "description": "Malaysia's largest vegetarian restaurant finder. Discover 2,000+ veggie-friendly restaurants across all states.",
@@ -858,70 +858,109 @@
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 32px;
       position: relative;
+      padding-bottom: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .step:nth-child(2) { transform: translateY(30px); }
+      .step:nth-child(3) { transform: translateY(60px); }
+      .step:nth-child(2):hover { transform: translateY(20px); }
+      .step:nth-child(3):hover { transform: translateY(50px); }
+    }
+
+    @media (max-width: 899px) {
+      .step { margin-top: 24px; }
     }
 
     .step {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      border: 1px solid var(--neutral-200);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 10px 40px rgba(34, 197, 94, 0.06);
+      border: 1px solid rgba(34, 197, 94, 0.1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
     }
 
     .step:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.25);
     }
 
-    .step-img {
+    .step-img-wrapper {
       width: 100%;
-      height: 220px;
-      object-fit: contain;
-      background: linear-gradient(135deg, var(--green-50), #f0fdf4);
-      display: block;
-      padding: 16px;
+      height: 240px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 28px 28px 0 0;
+      background: radial-gradient(circle at top right, rgba(220, 252, 231, 0.4), transparent 70%);
+      overflow: hidden;
     }
 
-    .step-body {
-      padding: 24px 28px 28px;
+    .step-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transform: scale(1);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .step:hover .step-img-wrapper img {
+      transform: scale(1.06) rotate(-2deg);
     }
 
     .step-number {
-      width: 40px;
-      height: 40px;
-      background: var(--green-600);
+      position: absolute;
+      top: -16px;
+      left: 24px;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--green-400), var(--green-600));
       color: #fff;
-      border-radius: 12px;
+      border-radius: 14px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       font-weight: 800;
       font-family: 'Outfit';
-      margin-bottom: 14px;
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+      border: 3px solid #fff;
+      z-index: 3;
       transition: all 0.4s ease;
     }
 
     .step:hover .step-number {
-      transform: scale(1.1) rotate(-3deg);
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+      transform: scale(1.1) rotate(-8deg);
+    }
+
+    .step-body {
+      padding: 20px 32px 36px;
+      text-align: left;
     }
 
     .step h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 12px;
       color: var(--neutral-900);
+      letter-spacing: -0.01em;
     }
 
     .step p {
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       color: var(--neutral-500);
-      line-height: 1.65;
+      line-height: 1.6;
+      margin: 0;
     }
 
     .stats-grid {
@@ -986,147 +1025,156 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      position: relative;
     }
 
     .about-top {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 60px;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 70px;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 60px;
+      text-align: left;
+    }
+
+    .about-img-container {
+      position: relative;
+      border-radius: 32px;
+      padding: 16px;
+      background: linear-gradient(135deg, #ffffff, var(--green-50));
+      box-shadow: 0 20px 60px rgba(34, 197, 94, 0.08);
+      z-index: 1;
+    }
+
+    .about-img-container::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: 16px;
+      border-radius: 40px;
+      border: 2px dashed var(--green-200);
+      z-index: -1;
     }
 
     .about-img {
       width: 100%;
       aspect-ratio: 4/3;
       object-fit: cover;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-xl);
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 24px;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .about-img:hover {
-      transform: scale(1.02) rotate(-0.5deg);
-    }
-
-    .about-content {
-      text-align: left;
+    .about-img-container:hover .about-img {
+      transform: scale(1.03) rotate(-1deg);
     }
 
     .about-content h2 {
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(2.2rem, 4vw, 3rem);
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       color: var(--neutral-900);
       letter-spacing: -0.03em;
+      line-height: 1.25;
     }
 
     .about-content p {
       font-size: 1.05rem;
       color: var(--neutral-500);
-      margin-bottom: 18px;
-      line-height: 1.75;
+      margin-bottom: 20px;
+      line-height: 1.8;
     }
 
     .about-trust {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 8px;
-      padding: 8px 16px;
-      background: var(--green-50);
+      gap: 12px;
+      margin-top: 16px;
+      padding: 10px 24px 10px 10px;
+      background: #ffffff;
       border-radius: 100px;
-      border: 1px solid var(--green-200);
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .about-trust:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(34, 197, 94, 0.18);
     }
 
     .about-trust img {
-      width: 28px;
-      height: 28px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
     }
 
     .about-trust span {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--green-800);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--green-700);
+      font-family: 'Outfit', sans-serif;
     }
 
     .about-values {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 48px;
+      gap: 24px;
+      margin-top: 20px;
+      width: 100%;
     }
 
     .about-value {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: 0 10px 40px rgba(34, 197, 94, 0.05);
+      border: 1px solid rgba(34, 197, 94, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 14px;
-      padding: 32px 20px;
-      background: #fff;
-      border-radius: 20px;
-      border: 1px solid rgba(34, 197, 94, 0.08);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      overflow: hidden;
-    }
-
-    .about-value::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--green-400), var(--green-600));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-      border-radius: 0 0 4px 4px;
     }
 
     .about-value:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(34, 197, 94, 0.12), 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .about-value:hover::before {
-      transform: scaleX(1);
+      box-shadow: 0 20px 50px rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.2);
     }
 
     .about-value-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
+      margin-bottom: 12px;
     }
 
-    .about-value:hover .about-value-icon {
-      transform: scale(1.12) rotate(-5deg);
+    .about-value-icon svg {
+      width: 100px;
+      height: 100px;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .about-value:hover .about-value-icon svg {
+      transform: scale(1.12) translateY(-6px);
     }
 
     .about-value h4 {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--neutral-900);
-      margin-bottom: 2px;
-      position: relative;
+      margin-bottom: 12px;
     }
 
     .about-value p {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: var(--neutral-500);
       line-height: 1.6;
-      line-height: 1.6;
-      position: relative;
+      margin: 0;
     }
 
     .vendor-section {
@@ -1947,50 +1995,51 @@
         <h2 data-i18n="how_title">Your Next Veggie Meal in 3 Steps</h2>
         <p data-i18n="how_desc">Finding plant-based food in Malaysia has never been easier.</p>
       </div>
-      <div class="steps">
+      <div class="steps" style="position: relative;">
+        <!-- Beautiful Journey Line Behind Cards -->
+        <svg class="steps-journey-line hidden-md-down" viewBox="0 0 1000 200" preserveAspectRatio="none" style="position: absolute; top: 100px; left: 10%; width: 80%; height: 160px; z-index: 1; pointer-events: none;" aria-hidden="true">
+          <defs>
+            <linearGradient id="journey-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4ade80" stop-opacity="0.2" />
+              <stop offset="50%" stop-color="#16a34a" stop-opacity="0.6" />
+              <stop offset="100%" stop-color="#4ade80" stop-opacity="0.2" />
+            </linearGradient>
+          </defs>
+          <path d="M0,50 Q250,180 500,50 T1000,50" fill="none" stroke="url(#journey-grad)" stroke-width="4" stroke-dasharray="12 12" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        </svg>
+
         <style>
-          .steps::before { display: none !important; }
-          .step-arrow {
-            position: absolute;
-            top: 50%;
-            left: calc(100% + 20px);
-            transform: translateY(-50%);
-            width: 80px;
-            height: 24px;
-            pointer-events: none;
-            overflow: visible;
-            z-index: 0;
-            opacity: 0.6;
-          }
-          @media (max-width: 767px) {
-            .step-arrow {
-              top: calc(100% + 15px);
-              left: 50%;
-              transform: translateX(-50%) rotate(90deg);
-              width: 40px;
-            }
-          }
+          @media (max-width: 900px) { .steps-journey-line { display: none !important; } }
         </style>
+
         <div class="step">
-          <img src="images/onboarding/step1_download_1774523146858.png" class="step-img" alt="Step 1 - Download the App">
+          <div class="step-number">1</div>
+          <div class="step-img-wrapper">
+            <img src="images/onboarding/step1_download_1774523146858.png" alt="Step 1 - Download the App">
+          </div>
           <div class="step-body">
-            <div class="step-number">1</div>
             <h3 data-i18n="how_step1_title">Download the App</h3>
             <p data-i18n="how_step1_desc">Get GoVeggie free on iOS or Android. Create an account in seconds with Google, Apple, or Facebook.</p>
           </div>
         </div>
+
         <div class="step">
-          <img src="images/onboarding/step2_search_1774523163067.png" class="step-img" alt="Step 2 - Search or Browse">
+          <div class="step-number">2</div>
+          <div class="step-img-wrapper">
+            <img src="images/onboarding/step2_search_1774523163067.png" alt="Step 2 - Search or Browse">
+          </div>
           <div class="step-body">
-            <div class="step-number">2</div>
             <h3 data-i18n="how_step2_title">Search or Browse</h3>
             <p><span data-i18n="how_step2_desc">Use GPS to find nearby restaurants or search by name, state, or cuisine type. Apply filters to match your diet.</span></p>
           </div>
         </div>
+
         <div class="step">
-          <img src="images/onboarding/step3_eat_1774523177211.png" class="step-img" alt="Step 3 - Eat & Share">
+          <div class="step-number">3</div>
+          <div class="step-img-wrapper">
+            <img src="images/onboarding/step3_eat_1774523177211.png" alt="Step 3 - Eat & Share">
+          </div>
           <div class="step-body">
-            <div class="step-number">3</div>
             <h3 data-i18n="how_step3_title">Eat & Share</h3>
             <p><span data-i18n="how_step3_desc">Navigate there with one tap, enjoy your meal, and share your favourite spots with friends and the community.</span></p>
           </div>
@@ -2011,7 +2060,7 @@
       <div class="section-header">
         <div class="section-label" data-i18n="stats_label">Impact</div>
         <h2 data-i18n="stats_title">Trusted by Malaysia's Veggie Community</h2>
-        <p data-i18n="stats_desc">Built on 10+ years of data from the Vegetarian Society of Malaysia.</p>
+        <p data-i18n="stats_desc">Built on 10+ years of data from the VSM Facebook community.</p>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -2039,15 +2088,17 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-top">
-          <img src="images/about-community.png" alt="Malaysian community sharing vegetarian food on banana leaves" class="about-img">
+          <div class="about-img-container">
+            <img src="images/about-community.png" alt="Malaysian community sharing vegetarian food on banana leaves" class="about-img">
+          </div>
           <div class="about-content">
             <div class="section-label" data-i18n="about_label">About GoVeggie</div>
-            <h2 data-i18n="about_title">A Project by the Vegetarian Society of Malaysia</h2>
-            <p><span data-i18n="about_desc1">GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a community dedicated to promoting plant-based living across the nation.</span></p>
+            <h2 data-i18n="about_title">A Project by the VSM Community</h2>
+            <p><span data-i18n="about_desc1">GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a Facebook Group community dedicated to promoting plant-based living across the nation.</span></p>
             <p><span data-i18n="about_desc2">Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.</span></p>
             <div class="about-trust">
               <img src="images/logo.png" alt="VSM">
-              <span>Backed by VSM since 2015</span>
+              <span>VSM Facebook Community since 2015</span>
             </div>
           </div>
         </div>
@@ -2106,22 +2157,25 @@
               <div class="about-value-icon">
                 <svg width="64" height="64" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="globeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="mapBg" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stop-color="#dbeafe" />
                       <stop offset="100%" stop-color="#bfdbfe" />
                     </linearGradient>
-                    <linearGradient id="globeFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="pinFill" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stop-color="#60a5fa" />
                       <stop offset="100%" stop-color="#2563eb" />
                     </linearGradient>
-                    <filter id="globeShadow"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2563eb" flood-opacity="0.25" /></filter>
+                    <filter id="pinShadow"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#2563eb" flood-opacity="0.35" /></filter>
                   </defs>
-                  <rect x="10" y="10" width="100" height="100" rx="26" fill="url(#globeBg)" />
-                  <circle cx="60" cy="60" r="28" fill="url(#globeFill)" filter="url(#globeShadow)" />
-                  <ellipse cx="60" cy="60" rx="14" ry="28" fill="none" stroke="#fff" stroke-width="2.5" opacity="0.6" />
-                  <line x1="32" y1="60" x2="88" y2="60" stroke="#fff" stroke-width="2.5" opacity="0.6" />
-                  <path d="M35 45 Q60 40 85 45" fill="none" stroke="#fff" stroke-width="2" opacity="0.4" />
-                  <path d="M35 75 Q60 80 85 75" fill="none" stroke="#fff" stroke-width="2" opacity="0.4" />
+                  <!-- Background rect matching the others -->
+                  <rect x="10" y="10" width="100" height="100" rx="26" fill="url(#mapBg)" />
+                  <!-- Stylized map fold -->
+                  <path d="M28 45 L50 35 L70 45 L92 35 L92 75 L70 85 L50 75 L28 85 Z" fill="#ffffff" opacity="0.7" />
+                  <line x1="50" y1="35" x2="50" y2="75" stroke="#bfdbfe" stroke-width="2" opacity="0.8" />
+                  <line x1="70" y1="45" x2="70" y2="85" stroke="#bfdbfe" stroke-width="2" opacity="0.8" />
+                  <!-- Location Pin -->
+                  <path d="M60 38 C48 38 38 48 38 60 C38 78 60 96 60 96 C60 96 82 78 82 60 C82 48 72 38 60 38 Z" fill="url(#pinFill)" filter="url(#pinShadow)" />
+                  <circle cx="60" cy="56" r="8" fill="#ffffff" />
                 </svg>
               </div>
               <div>
@@ -2231,7 +2285,7 @@
         <h3><img src="images/logo.png" alt="GoVeggie"
             style="width:36px;height:36px;border-radius:8px;vertical-align:middle;margin-right:8px;">GoVeggie Malaysia
         </h3>
-        <p><span data-i18n="footer_desc">A project by the Vegetarian Society of Malaysia (VSM). Making plant-based dining accessible to everyone across Malaysia since 2015.</span></p>
+        <p><span data-i18n="footer_desc">A project by the VSM Facebook community. Making plant-based dining accessible to everyone across Malaysia since 2015.</span></p>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer_app">App</h4>
@@ -2258,7 +2312,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Vegetarian Society of Malaysia. All rights reserved.</span>
+      <span>&copy; 2026 VSM Community. All rights reserved.</span>
       <div class="footer-social">
         <a href="https://www.facebook.com/groups/781347675284086/" target="_blank" rel="noopener"
           aria-label="Facebook">f</a>
