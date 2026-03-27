@@ -2003,30 +2003,20 @@
     }
 
     .badge-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 180px;
-      height: 54px;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-block;
+      transition: all 0.3s ease;
     }
 
     .badge-link:hover {
-      transform: translateY(-4px);
-      filter: brightness(1.1);
+      transform: translateY(-3px);
+      filter: brightness(1.08);
     }
 
     .store-badge {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: 50px;
     }
 
     @media (max-width: 480px) {
-      .badge-link {
-        width: 160px;
-        height: 48px;
+      .store-badge {
+        height: 42px;
       }
