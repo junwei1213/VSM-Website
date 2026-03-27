@@ -113,8 +113,8 @@ const translations = {
     nav_download: "下载 App",
 
     hero_badge: "大马 #1 素食搜索",
-    hero_title_1: "一回生，",
-    hero_title_hl: "二回蔬",
+    hero_title_1: "",
+    hero_title_hl: "一回生，二回蔬",
     hero_title_2: "",
     hero_desc: "搜索大马 1,800+ 素食与纯素餐厅。从隐藏美食到热门餐厅，您的下一顿素食就在指尖。",
     hero_cta_download: "下载 App",
