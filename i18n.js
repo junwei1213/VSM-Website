@@ -62,8 +62,8 @@ const translations = {
     // About
     about_label: "About GoVeggie",
     about_title: "A Project by the VSM Community",
-    about_desc1: "GoVeggie is the digital initiative of VSM (Vegetarian Society of Malaysia), a Facebook Group community dedicated to promoting plant-based living across the nation.",
-    about_desc2: "Our mission is simple: make it effortless for anyone in Malaysia to find delicious vegetarian and vegan food, whether they're committed vegans or curious first-timers.",
+    about_desc1: "We started as a Facebook Group community dedicated to promoting plant-based living across Malaysia. Then we built GoVeggie App to turn that mission into a practical tool.",
+    about_desc2: "Our mission is simple: make it effortless for anyone in Malaysia — whether a committed vegetarian or a curious first-timer — to find vegetarian restaurants.",
     about_free_title: "Always Free",
     about_free_desc: "Free for all users, forever",
     about_comm_title: "Community First",
@@ -162,8 +162,8 @@ const translations = {
 
     about_label: "关于 GoVeggie",
     about_title: "VSM 社区项目",
-    about_desc1: "GoVeggie 是 VSM（大马素食协会）的数字化项目，这是一个致力于在全国推广素食生活的 Facebook 群组社区。",
-    about_desc2: "我们的使命很简单：让大马任何人都能轻松找到美味的素食，无论是坚定的素食者还是好奇的初次尝试者。",
+    about_desc1: "我们最初是一个致力于在全国推广素食生活的 Facebook 群组社区。后来，我们推出了 GoVeggie App，让这份初心有了更方便实用的工具。",
+    about_desc2: "我们的使命很简单：让马来西亚的每个人——无论是素食者，还是初次尝试的新朋友——都能轻松找到素食餐厅。",
     about_free_title: "永久免费",
     about_free_desc: "对所有用户永久免费",
     about_comm_title: "社区优先",
@@ -259,8 +259,8 @@ const translations = {
 
     about_label: "Tentang GoVeggie",
     about_title: "Projek Oleh Komuniti VSM",
-    about_desc1: "GoVeggie adalah inisiatif digital VSM (Persatuan Vegetarian Malaysia), sebuah kumpulan Facebook komuniti yang berdedikasi untuk mempromosikan gaya hidup berasaskan tumbuhan di seluruh negara.",
-    about_desc2: "Misi kami mudah: menjadikannya mudah untuk sesiapa di Malaysia mencari makanan vegetarian dan vegan yang lazat, sama ada mereka vegan tegar atau yang pertama kali mencuba.",
+    about_desc1: "Kami bermula sebagai komuniti kumpulan Facebook yang berdedikasi untuk mempromosikan gaya hidup berasaskan tumbuhan di seluruh Malaysia. Kemudian kami membina GoVeggie App untuk menjadikan misi itu alat yang praktikal.",
+    about_desc2: "Misi kami mudah: memudahkan sesiapa di Malaysia — sama ada vegetarian tegar atau yang pertama kali mencuba — untuk mencari restoran vegetarian.",
     about_free_title: "Sentiasa Percuma",
     about_free_desc: "Percuma untuk semua pengguna, selamanya",
     about_comm_title: "Komuniti Utama",
