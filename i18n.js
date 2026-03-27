@@ -8,7 +8,7 @@ const translations = {
     nav_download: "Download App",
 
     // Hero
-    hero_badge: "Malaysia's #1 Veggie Finder",
+    hero_badge: "Try once, go veggie for life",
     hero_title_1: "Discover ",
     hero_title_hl: "Vegetarian",
     hero_title_2: " Food Everywhere in Malaysia",
@@ -112,7 +112,7 @@ const translations = {
     nav_restaurants: "餐厅合作",
     nav_download: "下载 App",
 
-    hero_badge: "大马 #1 素食搜索",
+    hero_badge: "一回生，二回蔬",
     hero_title_1: "发现大马",
     hero_title_hl: "素食",
     hero_title_2: "美食",
@@ -209,7 +209,7 @@ const translations = {
     nav_restaurants: "Untuk Restoran",
     nav_download: "Muat Turun App",
 
-    hero_badge: "Pencari Vegetarian #1 Malaysia",
+    hero_badge: "Cuba sekali, jadi veggie selamanya",
     hero_title_1: "Temui Makanan ",
     hero_title_hl: "Vegetarian",
     hero_title_2: " Di Seluruh Malaysia",
