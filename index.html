@@ -489,8 +489,37 @@
     .hero-img-mobile {
       display: none;
       max-width: 200px;
-      margin: 20px auto;
+      margin: 20px auto 0;
       border-radius: 16px;
+    }
+
+    .hero-mobile-badges {
+      display: none;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 14px auto 20px;
+    }
+
+    .hero-mobile-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid var(--neutral-200);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--neutral-700);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .hero-mobile-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
     }
 
     .hero p {
@@ -1790,6 +1819,10 @@
         display: block;
       }
 
+      .hero-mobile-badges {
+        display: flex;
+      }
+
       .features-grid {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -2154,6 +2187,11 @@
         </div>
         <h1><span data-i18n="hero_title_1">Try Once, Go </span><span class="highlight" data-i18n="hero_title_hl">Veggie</span><span data-i18n="hero_title_2"> For Life</span></h1>
         <img src="images/hero-food.png?v=2" alt="GoVeggie" class="hero-img-mobile">
+        <div class="hero-mobile-badges">
+          <div class="hero-mobile-badge"><span class="dot" style="background:#22c55e;"></span> Pure Vegan</div>
+          <div class="hero-mobile-badge"><span class="dot" style="background:#f59e0b;"></span> 4.8 ★</div>
+          <div class="hero-mobile-badge"><span class="dot" style="background:#3b82f6;"></span> 0.3km away</div>
+        </div>
         <p><span data-i18n="hero_desc">Find 1,800+ vegetarian and vegan restaurants across all states. From hidden gems
             to popular favourites, your next plant-based meal is just a tap away.</span></p>
         <div class="hero-cta">
