@@ -1437,18 +1437,18 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(254, 252, 243, 0.98);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       z-index: 99;
-      padding: 120px 32px 40px;
+      padding: 80px 28px 40px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 0;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateY(-30px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(-20px);
     }
 
     .mobile-menu.open {
@@ -1458,19 +1458,27 @@
     }
 
     .mobile-menu a {
-      font-size: 1.6rem;
-      font-weight: 700;
-      font-family: 'Outfit';
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--neutral-800);
       text-decoration: none;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--neutral-200);
-      transition: all 0.3s ease;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--neutral-100);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .mobile-menu a:hover {
+    .mobile-menu a::after {
+      content: '\203A';
+      font-size: 1.3rem;
+      color: var(--neutral-400);
+    }
+
+    .mobile-menu a:hover, .mobile-menu a:active {
       color: var(--green-600);
-      padding-left: 12px;
     }
 
     @media (max-width: 992px) {
@@ -1955,10 +1963,10 @@
     <a href="#about" onclick="toggleMenu()" data-i18n="nav_about">About</a>
     <a href="#vendors" onclick="toggleMenu()" data-i18n="nav_restaurants">For Restaurants</a>
     <a href="#download" onclick="toggleMenu()" data-i18n="nav_download">Download App</a>
-    <div class="lang-switcher" style="margin-top:20px;align-self:flex-start;">
-      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" data-lang="ms" onclick="setLang('ms')">BM</button>
-      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">CN</button>
+    <div class="lang-switcher" style="margin-top:24px;">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button>
+      <button class="lang-btn" data-lang="ms" onclick="setLang('ms');toggleMenu()">BM</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh');toggleMenu()">CN</button>
     </div>
   </div>
 
@@ -2562,11 +2570,17 @@
     // Mobile menu toggle
     function toggleMenu() {
       const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.hamburger');
+      const icon = document.getElementById('hamburger-icon');
       menu.classList.toggle('open');
+      const isOpen = menu.classList.contains('open');
+
+      // Swap icon
+      icon.innerHTML = isOpen
+        ? '<line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>'
+        : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
 
       // Prevent body scroll when menu is open
-      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     }
 
     // Smooth scroll with offset for fixed nav is handled by CSS scroll-padding-top
