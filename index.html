@@ -1556,7 +1556,12 @@
       }
 
       .feature-card {
-        padding: 36px 28px;
+        padding: 28px 22px;
+      }
+
+      .feature-icon {
+        width: 96px;
+        height: 96px;
       }
 
       .vendor-card {
@@ -1582,50 +1587,152 @@
 
     @media (max-width: 480px) {
       .hero h1 {
-        font-size: 2.4rem;
+        font-size: 2rem;
+        letter-spacing: -0.02em;
       }
 
       .hero p {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+      }
+
+      .hero-badge {
+        font-size: 0.8rem;
+        padding: 8px 16px;
       }
 
       .hero-stats {
-        flex-direction: column;
-        align-items: center;
-        gap: 28px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 24px;
+        border-top: none;
+        padding-top: 16px;
+        margin-top: 20px;
       }
 
       .hero-stat h3 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+      }
+
+      .hero-stat p {
+        font-size: 0.7rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-cta .btn {
+        text-align: center;
+      }
+
+      .section {
+        padding: 60px 16px;
+      }
+
+      .section-header h2 {
+        font-size: 1.6rem;
+      }
+
+      .section-header p {
+        font-size: 0.9rem;
+      }
+
+      .feature-card {
+        padding: 24px 20px;
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+      }
+
+      .feature-card h3 {
+        font-size: 1rem;
+      }
+
+      .feature-card p {
+        font-size: 0.85rem;
+      }
+
+      .step-img {
+        height: 160px;
+      }
+
+      .step-body {
+        padding: 20px 22px 24px;
       }
 
       .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
       }
 
       .stat-card {
-        padding: 40px 24px;
+        padding: 24px 16px;
+      }
+
+      .stat-card h3 {
+        font-size: 1.8rem;
+      }
+
+      .stat-card p {
+        font-size: 0.75rem;
       }
 
       .about-values {
         grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .about-value {
+        padding: 20px 14px;
+      }
+
+      .about-value-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .about-value h4 {
+        font-size: 0.9rem;
+      }
+
+      .about-value p {
+        font-size: 0.75rem;
+      }
+
+      .about-content h2 {
+        font-size: 1.6rem;
+      }
+
+      .vendor-card {
+        border-radius: 16px;
+      }
+
+      .vendor-card > div:last-child {
+        padding: 28px 20px !important;
       }
 
       .footer-inner {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
       }
 
       .footer-bottom {
         flex-direction: column;
-        gap: 28px;
+        gap: 20px;
         text-align: center;
       }
 
       .download-buttons {
         flex-direction: column;
         align-items: center;
+      }
+
+      .download-buttons img {
+        height: 48px;
       }
 
       .store-btn {
