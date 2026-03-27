@@ -1963,10 +1963,13 @@
     <a href="#about" onclick="toggleMenu()" data-i18n="nav_about">About</a>
     <a href="#vendors" onclick="toggleMenu()" data-i18n="nav_restaurants">For Restaurants</a>
     <a href="#download" onclick="toggleMenu()" data-i18n="nav_download">Download App</a>
-    <div class="lang-switcher" style="margin-top:24px;">
-      <button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button>
-      <button class="lang-btn" data-lang="ms" onclick="setLang('ms');toggleMenu()">BM</button>
-      <button class="lang-btn" data-lang="zh" onclick="setLang('zh');toggleMenu()">CN</button>
+    <div style="margin-top:auto;padding-top:24px;border-top:1px solid var(--neutral-100);">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--neutral-400);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px;">Language</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()" style="padding:12px;border-radius:10px;font-size:0.9rem;text-align:center;width:100%;">English</button>
+        <button class="lang-btn" data-lang="ms" onclick="setLang('ms');toggleMenu()" style="padding:12px;border-radius:10px;font-size:0.9rem;text-align:center;width:100%;">Melayu</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh');toggleMenu()" style="padding:12px;border-radius:10px;font-size:0.9rem;text-align:center;width:100%;">中文</button>
+      </div>
     </div>
   </div>
 
