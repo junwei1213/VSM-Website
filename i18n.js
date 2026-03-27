@@ -24,8 +24,8 @@ const translations = {
 
     // Features
     feat_label: "Features",
-    feat_title: "Everything You Need to Eat Green",
-    feat_desc: "Powerful tools to find your perfect plant-based meal, whether you're a lifelong vegetarian or just starting out.",
+    feat_title: "Find, Save & Navigate to Veggie Food",
+    feat_desc: "Everything you need to discover vegetarian restaurants across Malaysia — all in one app.",
     feat_gps_title: "GPS Restaurant Finder",
     feat_gps_desc: "Find vegetarian restaurants near you instantly with precise Google Maps integration. Sort by distance to discover hidden gems in every alley.",
     feat_search_title: "Smart Search & Filters",
@@ -126,9 +126,9 @@ const translations = {
     hero_float_away: "0.3公里",
     hero_float_open: "营业至晚上 9:00",
 
-    feat_label: "功能",
-    feat_title: "吃素所需的一切",
-    feat_desc: "强大的工具帮您找到完美的素食，无论您是资深素食者还是刚开始尝试。",
+    feat_label: "核心功能",
+    feat_title: "搜索、收藏、导航，一步到位",
+    feat_desc: "发现全马素食餐厅所需的一切功能，尽在一个 App。",
     feat_gps_title: "GPS 餐厅搜索",
     feat_gps_desc: "通过精准的 Google Maps 整合，即时找到附近的素食餐厅。按距离排序，发现每条巷子里的隐藏美食。",
     feat_search_title: "智能搜索与筛选",
@@ -224,8 +224,8 @@ const translations = {
     hero_float_open: "Buka sehingga 9:00 PM",
 
     feat_label: "Ciri-ciri",
-    feat_title: "Semua Yang Anda Perlu Untuk Makan Hijau",
-    feat_desc: "Alat berkuasa untuk mencari hidangan berasaskan tumbuhan yang sempurna, sama ada anda vegetarian lama atau baru bermula.",
+    feat_title: "Cari, Simpan & Navigasi ke Makanan Veggie",
+    feat_desc: "Semua yang anda perlukan untuk menemui restoran vegetarian di seluruh Malaysia — dalam satu app.",
     feat_gps_title: "Pencari Restoran GPS",
     feat_gps_desc: "Cari restoran vegetarian berhampiran anda serta-merta dengan integrasi Google Maps yang tepat. Susun mengikut jarak untuk menemui permata tersembunyi.",
     feat_search_title: "Carian & Penapis Pintar",
@@ -336,6 +336,6 @@ function setLang(lang) {
 
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('goveggie-lang') || 'en';
+  const saved = localStorage.getItem('goveggie-lang') || 'zh';
   setLang(saved);
 });
