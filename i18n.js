@@ -334,8 +334,9 @@ function setLang(lang) {
   localStorage.setItem('goveggie-lang', lang);
 }
 
-// Init on load
+// Init on load — URL param > localStorage > default zh
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('goveggie-lang') || 'zh';
-  setLang(saved);
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const lang = urlLang && translations[urlLang] ? urlLang : (localStorage.getItem('goveggie-lang') || 'zh');
+  setLang(lang);
 });
