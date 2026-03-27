@@ -281,7 +281,7 @@
       min-height: 100dvh;
       display: flex;
       align-items: center;
-      padding: 100px 24px 60px;
+      padding: 80px 24px 40px;
       background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
       position: relative;
       overflow: hidden;
@@ -1592,7 +1592,7 @@
 
       .hero {
         min-height: auto;
-        padding: 100px 24px 60px;
+        padding: 80px 24px 40px;
       }
 
       .hero-inner {
@@ -1726,7 +1726,7 @@
       }
 
       .hero {
-        padding: 120px 20px 80px;
+        padding: 80px 16px 40px;
       }
     }
 
