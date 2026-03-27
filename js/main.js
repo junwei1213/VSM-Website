@@ -1,3 +1,17 @@
+    // Smart download redirect based on device
+    function downloadApp() {
+      const ua = navigator.userAgent || '';
+      if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+        window.open('https://apps.apple.com/my/app/goveggie-malaysia/id1183783738', '_blank');
+      } else if (/android/i.test(ua)) {
+        window.open('https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog', '_blank');
+      } else {
+        // Desktop — scroll to footer badges
+        const footer = document.querySelector('footer');
+        if (footer) footer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
     // Navbar scroll effect with throttling
     let lastScrollY = 0;
     let ticking = false;
