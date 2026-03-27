@@ -2366,18 +2366,24 @@
       </div>
       <div class="steps" style="position: relative;">
         <!-- Beautiful Journey Line Behind Cards -->
-        <svg class="steps-journey-line hidden-md-down" viewBox="0 0 1000 200" preserveAspectRatio="none"
-          style="position: absolute; top: 100px; left: 10%; width: 80%; height: 160px; z-index: 1; pointer-events: none;"
+        <svg class="steps-journey-line" viewBox="0 0 1000 100" preserveAspectRatio="none"
+          style="position: absolute; top: 50%; left: 5%; width: 90%; height: 80px; z-index: 0; pointer-events: none; transform: translateY(-50%);"
           aria-hidden="true">
           <defs>
             <linearGradient id="journey-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#4ade80" stop-opacity="0.2" />
-              <stop offset="50%" stop-color="#16a34a" stop-opacity="0.6" />
-              <stop offset="100%" stop-color="#4ade80" stop-opacity="0.2" />
+              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.15" />
+              <stop offset="25%" stop-color="#16a34a" stop-opacity="0.5" />
+              <stop offset="50%" stop-color="#16a34a" stop-opacity="0.5" />
+              <stop offset="75%" stop-color="#16a34a" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#22c55e" stop-opacity="0.15" />
             </linearGradient>
           </defs>
-          <path d="M0,50 Q250,180 500,50 T1000,50" fill="none" stroke="url(#journey-grad)" stroke-width="4"
-            stroke-dasharray="12 12" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+          <path d="M0,50 C167,10 333,90 500,50 C667,10 833,90 1000,50" fill="none" stroke="url(#journey-grad)" stroke-width="3"
+            stroke-dasharray="10 8" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+          <!-- Arrow dots at step positions -->
+          <circle cx="167" cy="50" r="6" fill="#16a34a" opacity="0.3" />
+          <circle cx="500" cy="50" r="6" fill="#16a34a" opacity="0.3" />
+          <circle cx="833" cy="50" r="6" fill="#16a34a" opacity="0.3" />
         </svg>
 
         <style>
