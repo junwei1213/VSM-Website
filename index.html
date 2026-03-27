@@ -1497,9 +1497,23 @@
       }
 
       .hero-img {
-        max-width: 280px;
+        max-width: 320px;
         margin: 0 auto;
         border-radius: 20px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 100px 24px 60px;
+      }
+
+      .hero-inner {
+        gap: 36px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
 
       .floating-card.card-1 {
@@ -1512,14 +1526,9 @@
         bottom: 10%;
       }
 
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
-
       .steps {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
       }
 
       .about-top {
@@ -1558,16 +1567,47 @@
       }
 
       .features-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
       }
 
       .feature-card {
-        padding: 28px 22px;
+        padding: 24px 18px;
       }
 
       .feature-icon {
-        width: 96px;
-        height: 96px;
+        width: 80px;
+        height: 80px;
+        border-radius: 18px;
+      }
+
+      .feature-card h3 {
+        font-size: 1rem;
+      }
+
+      .feature-card p {
+        font-size: 0.85rem;
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .step-img {
+        height: 160px;
+      }
+
+      .step-body {
+        padding: 18px 16px 22px;
+      }
+
+      .step h3 {
+        font-size: 1rem;
+      }
+
+      .step p {
+        font-size: 0.85rem;
       }
 
       .vendor-card {
@@ -1582,16 +1622,12 @@
         gap: 12px;
       }
 
-      .hero-visual {
-        display: none;
+      .section {
+        padding: 80px 20px;
       }
 
       .hero {
         min-height: auto;
-      }
-
-      .section {
-        padding: 80px 20px;
       }
 
       .hero {
@@ -1600,6 +1636,20 @@
     }
 
     @media (max-width: 480px) {
+      .hero-visual {
+        display: none;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
       .hero h1 {
         font-size: 2rem;
         letter-spacing: -0.02em;
@@ -1771,15 +1821,18 @@
 
     .animate-target {
       opacity: 0;
-      filter: blur(8px);
-      transform: translateY(40px) scale(0.96);
-      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .animate-target.animate-in {
       opacity: 1;
-      filter: blur(0);
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
+    }
+
+    /* Fallback: if JS fails, show everything after 2s */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-target { opacity: 1; transform: none; }
     }
     
     #scroll-progress {
@@ -2551,6 +2604,11 @@
       el.style.transitionDelay = `${i * 100}ms`;
       observer.observe(el);
     });
+
+    // Fallback: force show all animated elements after 3s
+    setTimeout(() => {
+      document.querySelectorAll('.animate-target').forEach(el => el.classList.add('animate-in'));
+    }, 3000);
 
     // Add parallax effect to hero background elements
     window.addEventListener('scroll', () => {
