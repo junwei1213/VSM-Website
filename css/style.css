@@ -1899,16 +1899,6 @@
         gap: 12px;
       }
 
-      .download-buttons .badge-link {
-        flex: 1;
-        max-width: 180px;
-      }
-
-      .download-buttons img {
-        width: 100%;
-        height: auto;
-      }
-
       .store-btn {
         justify-content: center;
         width: 100%;
