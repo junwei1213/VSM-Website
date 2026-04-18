@@ -223,15 +223,28 @@ h6    { font-variation-settings: "opsz" 14, "SOFT" 30; letter-spacing: 0; }
   text-wrap: pretty;
 }
 
-/* Feature icon containment fix */
+/* Feature icon: the PNGs are already full app-icon designs (rounded
+   square + their own coloured background). Wrapping them in a second
+   coloured gradient box creates a nested icon-in-icon look. Strip the
+   outer container and let the PNG be the icon. */
 .feature-icon.feature-icon-img{
-  width: 88px;
-  height: 88px;
-  border-radius: 22px;
-  background: var(--green-50) !important;
-  box-shadow: inset 0 0 0 1px var(--green-100);
-  padding: 12px;
-  overflow: hidden;
+  width: 96px;
+  height: 96px;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  padding: 0;
+  overflow: visible;
+  margin-bottom: 22px;
+  filter: drop-shadow(0 6px 14px rgba(15, 61, 46, 0.10));
+}
+.feature-card:nth-child(1) .feature-icon.feature-icon-img,
+.feature-card:nth-child(2) .feature-icon.feature-icon-img,
+.feature-card:nth-child(3) .feature-icon.feature-icon-img,
+.feature-card:nth-child(4) .feature-icon.feature-icon-img,
+.feature-card:nth-child(5) .feature-icon.feature-icon-img,
+.feature-card:nth-child(6) .feature-icon.feature-icon-img{
+  background: transparent !important;
 }
 .feature-icon-image{
   width: 100% !important;
@@ -239,12 +252,6 @@ h6    { font-variation-settings: "opsz" 14, "SOFT" 30; letter-spacing: 0; }
   object-fit: contain !important;
   display: block;
 }
-.feature-card:nth-child(1) .feature-icon.feature-icon-img{ background: linear-gradient(135deg,#dcfce7,#bbf7d0) !important; }
-.feature-card:nth-child(2) .feature-icon.feature-icon-img{ background: linear-gradient(135deg,#dbeafe,#bfdbfe) !important; }
-.feature-card:nth-child(3) .feature-icon.feature-icon-img{ background: linear-gradient(135deg,#fce7f3,#fbcfe8) !important; }
-.feature-card:nth-child(4) .feature-icon.feature-icon-img{ background: linear-gradient(135deg,#fef3c7,#fde68a) !important; }
-.feature-card:nth-child(5) .feature-icon.feature-icon-img{ background: linear-gradient(135deg,#e0e7ff,#c7d2fe) !important; }
-.feature-card:nth-child(6) .feature-icon.feature-icon-img{ background: linear-gradient(135deg,#d1fae5,#a7f3d0) !important; }
 
 .step-number{
   font-family: var(--font-display) !important;
@@ -391,5 +398,32 @@ h6    { font-variation-settings: "opsz" 14, "SOFT" 30; letter-spacing: 0; }
   .vendor-card h2{ font-size: clamp(2.1rem, 8vw, 2.8rem); }
   .download-section h2{ font-size: clamp(2.4rem, 9vw, 3.2rem); }
   .hero-stat h3{ font-size: 2.1rem; }
-  .feature-icon.feature-icon-img{ width: 72px; height: 72px; border-radius: 18px; padding: 10px; }
+  .feature-icon.feature-icon-img{ width: 84px; height: 84px; border-radius: 0; padding: 0; margin-bottom: 16px; }
+}
+
+/* ============================================================
+   Features section: soften the empty cream canvas with tinted
+   pools that echo the six accent colors from the cards above.
+   ============================================================ */
+#features{
+  background:
+    radial-gradient(720px circle at 6% -4%, rgba(34, 197, 94, 0.09), transparent 52%),
+    radial-gradient(620px circle at 98% 18%, rgba(99, 102, 241, 0.07), transparent 52%),
+    radial-gradient(680px circle at 104% 104%, rgba(236, 72, 153, 0.06), transparent 52%),
+    radial-gradient(620px circle at -6% 94%, rgba(245, 158, 11, 0.07), transparent 52%),
+    var(--cream);
+}
+#features .section-header{
+  position: relative;
+}
+#features .section-header::after{
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 28px auto 0;
+  background: linear-gradient(90deg,
+    #22c55e, #3b82f6, #ec4899, #f59e0b, #6366f1, #10b981);
+  border-radius: 2px;
+  opacity: 0.55;
 }
