@@ -38,6 +38,7 @@ const translations = {
     feat_nav_desc: "One tap to open Google Maps or Waze for turn-by-turn directions. Get there easily with your preferred navigation app.",
     feat_community_title: "Community Powered",
     feat_community_desc: "Submit new restaurants, report issues, and help keep data accurate. Built by the community, for the community.",
+    features_cta: "Download App",
 
     // How It Works
     how_label: "How It Works",
@@ -141,6 +142,7 @@ const translations = {
     feat_nav_desc: "一键打开 Google Maps 或 Waze 获取导航路线。用您喜欢的导航应用轻松到达。",
     feat_community_title: "社区驱动",
     feat_community_desc: "提交新餐厅、反馈问题，帮助保持数据准确。由社区建设，为社区服务。",
+    features_cta: "下载 App",
 
     how_label: "使用方法",
     how_title: "3 步找到您的素食",
@@ -238,6 +240,7 @@ const translations = {
     feat_nav_desc: "Satu ketukan untuk membuka Google Maps atau Waze untuk arah. Sampai dengan mudah menggunakan aplikasi navigasi pilihan anda.",
     feat_community_title: "Dikuasakan Komuniti",
     feat_community_desc: "Hantar restoran baharu, laporkan isu, dan bantu pastikan data tepat. Dibina oleh komuniti, untuk komuniti.",
+    features_cta: "Muat Turun App",
 
     how_label: "Cara Guna",
     how_title: "Hidangan Vegetarian Seterusnya Dalam 3 Langkah",

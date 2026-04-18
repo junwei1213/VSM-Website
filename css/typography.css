@@ -4,10 +4,45 @@
    ============================================================ */
 
 :root{
-  --font-display: 'Fraunces', 'Outfit', Georgia, serif;
-  --font-body:    'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Fraunces', 'Outfit', 'Source Han Serif SC', 'Noto Serif SC', 'Songti SC', 'STSong', Georgia, serif;
+  --font-body:    'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans SC', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
+
+/* --- CJK overrides: Fraunces italic falls through to Georgia italic which
+   slants Chinese glyphs awkwardly. Keep upright + bold for CN, use the
+   existing green underline stripe as the emphasis instead. --- */
+:lang(zh) .hero h1 .highlight {
+  font-style: normal;
+  font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 700;
+  font-weight: 700;
+  padding: 0 10px;
+}
+:lang(zh) .step-number {
+  font-style: normal;
+  font-weight: 700 !important;
+}
+:lang(zh) h1, :lang(zh) h2, :lang(zh) h3, :lang(zh) h4, :lang(zh) h5 {
+  letter-spacing: 0;
+}
+:lang(zh) .hero h1,
+:lang(zh) .section-header h2,
+:lang(zh) .about-content h2,
+:lang(zh) .download-section h2,
+:lang(zh) .vendor-card h2 {
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+:lang(zh) .feature-card h3,
+:lang(zh) .step h3,
+:lang(zh) .about-value h4,
+:lang(zh) .floating-card h5 {
+  letter-spacing: 0;
+}
+
+/* Feature card content expands so all cards bottom-align evenly */
+.feature-card { justify-content: flex-start; }
+.feature-card p { flex: 1 1 auto; }
 
 body{
   font-family: var(--font-body);
