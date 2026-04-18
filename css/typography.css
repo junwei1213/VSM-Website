@@ -402,6 +402,24 @@ h6    { font-variation-settings: "opsz" 14, "SOFT" 30; letter-spacing: 0; }
 }
 
 /* ============================================================
+   Follow Us Bar: fixed above the nav so it isn't covered by it.
+   ============================================================ */
+.follow-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+nav{ top: 40px; }
+.hero{ padding-top: 120px; }
+@media (max-width: 640px){
+  .follow-bar{ font-size: 0.78rem; padding: 8px 12px !important; gap: 6px !important; }
+  nav{ top: 36px; }
+  .hero{ padding-top: 108px; }
+}
+
+/* ============================================================
    Features section: soften the empty cream canvas with tinted
    pools that echo the six accent colors from the cards above.
    ============================================================ */
