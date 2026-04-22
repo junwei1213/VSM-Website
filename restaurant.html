@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">View in GoVeggie Malaysia</title>
-  <meta name="description" content="Open this restaurant in the GoVeggie Malaysia app. 在 GoVeggie 应用打开。">
+  <title id="page-title">GoVeggie Malaysia</title>
+  <meta name="description" content="A vegetarian restaurant shared via GoVeggie Malaysia.">
 
-  <!-- iOS Smart App Banner — auto shows "View in app" bar when Safari sees this -->
+  <!-- iOS Smart App Banner -->
   <meta name="apple-itunes-app" content="app-id=1183783738">
 
-  <!-- OG tags (set dynamically below if restaurant data loads) -->
-  <meta id="og-title" property="og:title" content="GoVeggie Malaysia - Restaurant">
-  <meta id="og-desc" property="og:description" content="Open this restaurant in the GoVeggie Malaysia app.">
+  <!-- OG tags (updated dynamically when a restaurant loads) -->
+  <meta id="og-title" property="og:title" content="GoVeggie Malaysia">
+  <meta id="og-desc" property="og:description" content="Find vegetarian restaurants across Malaysia.">
   <meta id="og-image" property="og:image" content="https://goveggiemalaysia.cloud/images/hero-food.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="GoVeggie Malaysia">
@@ -20,17 +20,32 @@
 
   <link rel="icon" type="image/png" href="/images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
+      --green-50:  #f0fdf4;
+      --green-100: #dcfce7;
+      --green-200: #bbf7d0;
       --green-500: #22c55e;
-      --green-600: #16a34a;
-      --green-700: #15803d;
-      --green-800: #166534;
+      --primary:   #2E7D32;
+      --primary-ink: #1b5e20;
+      --accent:    #66BB6A;
+      --orange-100: #ffedd5;
+      --orange-700: #c2410c;
+      --neutral-100: #f5f5f4;
+      --neutral-200: #e7e5e4;
       --neutral-300: #d6d3d1;
       --neutral-500: #78716c;
+      --neutral-600: #57534e;
+      --neutral-700: #44403c;
       --neutral-800: #292524;
       --cream: #fefcf3;
+      /* Mint-white to match the Flutter app's Scaffold background exactly
+         (#F9FBF7), so the share landing feels like a continuation of the app. */
+      --warm-bg: #f9fbf7;
+      --soft-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 10px 30px -12px rgba(0,0,0,0.08);
+      --btn-shadow: 0 6px 20px -6px rgba(46,125,50,0.38);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,243 +53,1012 @@
 
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      background: var(--cream);
+      background: var(--warm-bg);
       color: var(--neutral-800);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 25px 50px -12px rgba(0,0,0,0.08);
-      max-width: 440px;
-      width: 100%;
-      overflow: hidden;
-      animation: slideUp 0.4s ease-out;
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .hero-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-      object-fit: cover;
-      display: block;
-    }
-
-    .hero-image.placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 64px;
-    }
-
-    .body {
-      padding: 28px 28px 32px;
-      text-align: center;
-    }
-
-    .logo-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .logo-row img {
-      width: 40px; height: 40px; border-radius: 10px;
-    }
-    .logo-row .brand {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--green-700);
-      letter-spacing: -0.3px;
-    }
-
-    .restaurant-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-      line-height: 1.25;
-      color: var(--neutral-800);
-      letter-spacing: -0.5px;
-    }
-
-    .restaurant-address {
-      font-size: 0.88rem;
-      color: var(--neutral-500);
-      margin-bottom: 22px;
       line-height: 1.5;
+      min-height: 100dvh;
     }
-
-    .divider {
-      height: 1px;
-      background: #f0eee8;
-      margin: 0 0 20px;
+    h1, h2, h3 {
+      font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+      letter-spacing: -0.4px;
     }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    .hidden { display: none !important; }
 
-    .message {
-      font-size: 0.95rem;
-      color: var(--neutral-500);
-      margin-bottom: 22px;
-      line-height: 1.6;
+    /* ─── Lang switcher (top right, fixed) ───────────────────────────────── */
+    .lang-switcher {
+      position: fixed;
+      top: 14px; right: 14px;
+      z-index: 100;
+      display: inline-flex;
+      gap: 2px;
+      padding: 3px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-
-    .message-zh {
-      font-size: 0.85rem;
-      color: var(--neutral-500);
-      opacity: 0.85;
-      margin-top: 4px;
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 15px 24px;
-      border-radius: 14px;
-      font-size: 1rem;
+    .lang-btn {
+      position: relative;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
       font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-      font-family: inherit;
+      color: var(--neutral-600);
+      min-height: 32px;
     }
-    .btn:active { transform: scale(0.97); }
+    .lang-btn::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 44px; min-height: 44px;
+    }
+    .lang-btn.active { background: var(--primary); color: #fff; }
 
-    .btn-primary {
-      background: var(--green-600);
-      color: #fff;
-      box-shadow: 0 8px 24px -6px rgba(22,163,74,0.4);
-      margin-bottom: 10px;
-    }
-    .btn-primary:hover { background: var(--green-700); }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--green-700);
-      border: 2px solid var(--green-600);
-    }
-    .btn-secondary:hover { background: rgba(22,163,74,0.06); }
-
-    .badges {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-    .badges a { display: block; }
-    .badges img {
-      height: 44px;
-      border-radius: 6px;
-    }
-
+    /* ─── Loading state ───────────────────────────────────────────────────── */
     .loading {
-      padding: 60px 32px;
-      text-align: center;
-      color: var(--neutral-500);
-      font-size: 0.9rem;
+      min-height: 100dvh;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--neutral-500); font-size: 0.9rem;
     }
     .loading .spinner {
-      display: inline-block;
-      width: 22px; height: 22px;
-      border: 2px solid var(--neutral-300);
-      border-top-color: var(--green-600);
+      display: inline-block; width: 22px; height: 22px;
+      border: 2.5px solid var(--neutral-200);
+      border-top-color: var(--primary);
       border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      margin-right: 8px;
-      vertical-align: middle;
+      animation: spin 0.7s linear infinite;
+      margin-right: 10px; vertical-align: middle;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .hidden { display: none !important; }
-
-    .small-link {
-      display: block;
-      margin-top: 14px;
-      font-size: 0.8rem;
-      color: var(--neutral-500);
-      text-decoration: none;
+    /* ─── Loaded: restaurant-first share page ─────────────────────────────── */
+    .detail {
+      max-width: 560px;
+      margin: 0 auto;
+      padding-bottom: 32px;
     }
-    .small-link:hover { color: var(--green-700); text-decoration: underline; }
+
+    /* Hero cover */
+    .cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, var(--green-100) 0%, var(--green-200) 100%);
+      overflow: hidden;
+    }
+    .cover img { width: 100%; height: 100%; object-fit: cover; }
+    .cover-placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary);
+    }
+    .cover-placeholder svg { width: 76px; height: 76px; opacity: 0.55; }
+    .cover::after {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: 0; height: 30%;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18));
+      pointer-events: none;
+    }
+    .cover-overlay {
+      position: absolute; left: 16px; bottom: 16px;
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .cover-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--neutral-700);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .cover-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-500); }
+    .cover-pill.closed .dot { background: #dc2626; }
+
+    /* Small shared-by chip in cover top-left */
+    .shared-chip {
+      position: absolute; left: 16px; top: 16px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px 5px 6px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--primary);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .shared-chip img { width: 18px; height: 18px; border-radius: 4px; }
+
+    /* Hero body */
+    .hero-body { padding: 22px 20px 16px; }
+    /* Name typography mirrors the Flutter detail screen: primary name 1.75rem
+       (≈28 px) at weight 800 with tight tracking, secondary 1.05rem (≈19 px)
+       at weight 600 grey — same visual hierarchy the user sees in-app. */
+    .hero-body .name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1A1A1A;
+      line-height: 1.15;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    .hero-body .name-zh {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #5F6B68;
+      letter-spacing: 0.2px;
+      margin-bottom: 12px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px 8px;
+      font-size: 0.85rem;
+      color: var(--neutral-700);
+      margin-bottom: 12px;
+    }
+    .meta-row .item {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 500;
+    }
+    .meta-row .item .star { color: #f59e0b; }
+    .meta-row .item.bold { font-weight: 700; color: var(--neutral-800); }
+    .meta-row .sep { color: var(--neutral-300); }
+
+    .diet-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      display: inline-flex; align-items: center;
+      gap: 4px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: 0.1px;
+    }
+    .tag svg { width: 13px; height: 13px; stroke-width: 2.3; }
+    /* Filled badge palette matches the Flutter app's _buildFilledBadge
+       colours so users get the same visual language on both ends. */
+    .tag-vegan       { background: #2E7D32; color: #fff; }
+    .tag-vegetarian  { background: #7BAE4F; color: #fff; }
+    .tag-allium      { background: #F06292; color: #fff; }
+    .tag-no-allium   { background: #8DC63F; color: #fff; }
+    .tag-recommended { background: #EC008C; color: #fff; }
+    /* Cuisine chips stay neutral — secondary info, shouldn't compete with
+       the diet badges above. */
+    .tag-cuisine {
+      background: #fff;
+      color: var(--neutral-700);
+      border: 1px solid var(--neutral-200);
+      font-weight: 600;
+    }
+
+    .intro {
+      font-size: 0.92rem;
+      color: var(--neutral-700);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .address-row {
+      display: flex; gap: 10px; align-items: flex-start;
+      color: var(--neutral-700);
+      font-size: 0.88rem;
+      margin-bottom: 20px;
+      line-height: 1.45;
+    }
+    .address-row svg {
+      flex-shrink: 0; width: 18px; height: 18px;
+      color: var(--primary); margin-top: 1px;
+    }
+    /* Locked address / phone rows — clicking opens the app. Soft green wash
+       + lock chip signals "there's more here, unlock to get it". Feels
+       intentional, not broken. */
+    .row-locked {
+      position: relative;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid var(--green-100);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      color: var(--neutral-700);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      transition: background 0.15s, border-color 0.15s;
+      width: 100%;
+      text-align: left;
+    }
+    .row-locked:hover,
+    .row-locked:active {
+      background: var(--green-50);
+      border-color: var(--green-200);
+    }
+    .row-locked > svg.lead {
+      flex-shrink: 0; width: 18px; height: 18px;
+      color: var(--primary); margin-top: 1px;
+    }
+    .row-locked .lk-body { flex: 1; min-width: 0; }
+    .row-locked .lk-main {
+      font-weight: 600;
+      color: var(--neutral-800);
+      margin-bottom: 2px;
+    }
+    .row-locked .lk-hint {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .row-locked .lk-hint svg { width: 11px; height: 11px; }
+    .row-locked .lk-arrow {
+      flex-shrink: 0;
+      color: var(--primary);
+      opacity: 0.8;
+    }
+    .row-locked .lk-arrow svg { width: 16px; height: 16px; }
+
+    /* Locked quick-info card. Heavy blur + lowered opacity on the value so
+       the "there's content here" hint stays but the text is truly unreadable.
+       A solid green pill floats *below* the blurred value — no overlap, the
+       CTA is unmistakably separate from the gated content. Extra bottom
+       padding on the card makes room for the pill. */
+    .info-card.is-locked {
+      position: relative;
+      cursor: pointer;
+      background: linear-gradient(180deg, #fff 0%, rgba(46,125,50,0.04) 100%);
+      border-color: var(--green-100);
+      padding-bottom: 42px;
+    }
+    .info-card.is-locked .val {
+      filter: blur(7px);
+      opacity: 0.45;
+      user-select: none;
+      pointer-events: none;
+      color: var(--neutral-700);
+      /* prevent the blur from bleeding outside the card */
+      overflow: hidden;
+    }
+    .info-card.is-locked .lock-over {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 10px -3px rgba(46,125,50,0.55);
+      white-space: nowrap;
+    }
+    .info-card.is-locked .lock-over svg { width: 10px; height: 10px; }
+    .info-card.is-locked .lbl,
+    .info-card.is-locked .ic { filter: none !important; }
+    .info-card.is-locked:hover { border-color: var(--green-200); }
+
+    /* CTA stack */
+    .cta-stack { display: flex; flex-direction: column; gap: 10px; }
+    .btn {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s;
+      width: 100%;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: var(--btn-shadow);
+    }
+    .btn-primary:hover { background: var(--primary-ink); }
+    .btn-secondary {
+      background: #fff;
+      color: var(--neutral-800);
+      border: 1.5px solid var(--neutral-200);
+    }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+    .cta-hint {
+      font-size: 0.78rem;
+      color: var(--neutral-500);
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    /* Shared section rhythm */
+    .section { padding: 24px 20px 4px; }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--neutral-500);
+      margin-bottom: 12px;
+    }
+
+    /* Quick info grid — 2 cols on mobile, 4 on wider */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 520px) {
+      .info-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .info-card {
+      background: #fff;
+      border: 1px solid var(--neutral-200);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .info-card .ic {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      background: var(--green-50);
+      color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+    }
+    .info-card .ic svg { width: 16px; height: 16px; }
+    .info-card .lbl {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--neutral-500);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .info-card .val {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--neutral-800);
+      line-height: 1.35;
+    }
+
+    /* Photos grid */
+    .photos-grid {
+      display: grid;
+      gap: 6px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .photos-grid.count-1 { grid-template-columns: 1fr; }
+    .photos-grid.count-2 { grid-template-columns: repeat(2, 1fr); }
+    .photos-grid.count-3 { grid-template-columns: repeat(3, 1fr); }
+    .photos-grid.count-4 { grid-template-columns: repeat(2, 1fr); }
+    .photos-grid .ph {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background: var(--green-50);
+      overflow: hidden;
+    }
+    .photos-grid.count-1 .ph { aspect-ratio: 16 / 10; }
+    .photos-grid.count-2 .ph { aspect-ratio: 4 / 5; }
+    .photos-grid .ph img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .photos-grid .ph:hover img { transform: scale(1.04); }
+
+    /* Locked-content section — progressive disclosure for reviews / menu /
+       directions. Uses a soft green wash so it reads as "gated content" not
+       "marketing block" — the lock chip does the narrative work. */
+    .locked {
+      background:
+        linear-gradient(180deg, rgba(46,125,50,0.04) 0%, rgba(46,125,50,0.08) 100%);
+      border: 1px solid var(--green-100);
+      border-radius: 18px;
+      margin: 24px 20px 0;
+      padding: 20px 20px 18px;
+    }
+    .locked-head { margin-bottom: 14px; }
+    .lock-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px;
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid var(--green-100);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      margin-bottom: 10px;
+    }
+    .lock-chip svg { width: 12px; height: 12px; }
+    .locked-head h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--neutral-800);
+      line-height: 1.3;
+    }
+    .locked-list {
+      list-style: none;
+      display: flex; flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-bottom: 16px;
+      padding: 0;
+    }
+    .locked-list li {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem;
+      color: var(--neutral-700);
+      font-weight: 600;
+    }
+    .locked-list li .ic {
+      color: var(--primary);
+    }
+    .locked-list li .ic svg { width: 15px; height: 15px; }
+    .locked-list li .dot {
+      color: var(--neutral-300);
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    .btn-unlock {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      width: 100%;
+    }
+    .btn-unlock svg { flex-shrink: 0; }
+
+    /* Social proof */
+    .proof {
+      margin: 20px 20px 0;
+      background: var(--green-50);
+      border-radius: 18px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .proof .stars {
+      display: inline-flex; gap: 2px;
+      color: #f59e0b;
+      margin-bottom: 10px;
+    }
+    .proof .stars svg { width: 14px; height: 14px; }
+    .proof .quote {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--neutral-800);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .proof .quote .hl { color: var(--primary); }
+    .proof .sub {
+      font-size: 0.78rem;
+      color: var(--neutral-600);
+    }
+
+    /* Final CTA */
+    .final {
+      margin: 24px 20px 0;
+      padding: 28px 20px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-ink) 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .final h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.25;
+      color: #fff;
+    }
+    .final .btn-white {
+      background: #fff;
+      color: var(--primary-ink);
+      padding: 14px 28px;
+      font-weight: 700;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .final .btn-white svg { width: 16px; height: 16px; }
+    .final .final-hint {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      margin-top: 10px;
+    }
+
+    /* Mini footer */
+    .mini-footer {
+      text-align: center;
+      padding: 28px 20px 12px;
+      font-size: 0.78rem;
+      color: var(--neutral-500);
+    }
+
+    /* ─── FALLBACK landing (no id / API error) ───────────────────────────── */
+    .landing { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
+    .landing-hero {
+      padding: 80px 0 24px;
+      text-align: center;
+    }
+    .landing-hero .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px;
+      background: var(--green-50);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .landing-hero .eyebrow svg { width: 14px; height: 14px; }
+    .landing-hero h1 {
+      font-size: clamp(1.9rem, 6.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--neutral-800);
+      margin-bottom: 14px;
+    }
+    .landing-hero .sub {
+      font-size: 1rem;
+      color: var(--neutral-600);
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+    .landing-hero .sub .hl { color: var(--primary); font-weight: 700; }
+    .landing-hero .cta-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .landing-hero .cta-row .btn { width: auto; padding: 14px 26px; }
+
+    .landing-photo {
+      margin-top: 32px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--soft-shadow);
+    }
+    .landing-photo img { width: 100%; display: block; }
+
+    .mini-footer a {
+      color: var(--neutral-700);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .mini-footer a:hover { color: var(--primary); }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <div id="loading" class="loading">
-      <span class="spinner"></span> Loading restaurant info…
-    </div>
+  <div class="lang-switcher" role="group" aria-label="Language">
+    <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="ms" onclick="setLang('ms')">MS</button>
+  </div>
 
-    <div id="content" class="hidden">
-      <img id="hero" class="hero-image placeholder" alt="">
-      <div class="body">
-        <div class="logo-row">
-          <img src="/images/logo.png" alt="">
-          <span class="brand">GoVeggie Malaysia</span>
+  <!-- Loading -->
+  <div id="loading" class="loading">
+    <span class="spinner"></span><span data-i18n="loading">Loading restaurant…</span>
+  </div>
+
+  <!-- Loaded: restaurant-first share page -->
+  <div id="content" class="detail hidden">
+    <!-- Hero cover -->
+    <div class="cover">
+      <img id="hero-img" class="hidden" alt="" onerror="this.classList.add('hidden'); document.getElementById('hero-placeholder').style.display='flex'">
+      <div id="hero-placeholder" class="cover-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.8 2c1 3 .5 6.81 0 9-.92 3.99-3.98 6.61-8 7-2.3.22-5 0-6 0Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+      </div>
+      <div class="shared-chip">
+        <img src="/images/logo.png" alt="">
+        <span data-i18n="shared_via">Shared via GoVeggie</span>
+      </div>
+      <div class="cover-overlay">
+        <div id="status-pill" class="cover-pill hidden">
+          <span class="dot"></span>
+          <span id="status-text"></span>
         </div>
-        <h1 id="name" class="restaurant-name"></h1>
-        <p id="address" class="restaurant-address"></p>
-        <div class="divider"></div>
-        <p class="message">
-          Download the app to view photos, menu &amp; directions.
-          <span class="message-zh">下载 App 查看照片、菜单和导航。</span>
-        </p>
-        <button class="btn btn-primary" onclick="downloadApp()">
-          Download App / 下载 App
-        </button>
-        <div class="badges" style="margin-top:16px">
-          <a id="appstore-link" href="https://apps.apple.com/my/app/goveggie-malaysia/id1183783738">
-            <img src="/images/badges/app-store-en.svg" alt="Download on the App Store">
-          </a>
-          <a id="playstore-link" href="https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog">
-            <img src="/images/badges/google-play-en.svg" alt="Get it on Google Play">
-          </a>
-        </div>
-        <a class="small-link" href="/">Visit GoVeggie Website →</a>
       </div>
     </div>
 
-    <div id="fallback" class="hidden">
-      <div class="hero-image placeholder">🥬</div>
-      <div class="body">
-        <div class="logo-row">
-          <img src="/images/logo.png" alt="">
-          <span class="brand">GoVeggie Malaysia</span>
+    <!-- Hero body -->
+    <div class="hero-body">
+      <h1 id="name" class="name"></h1>
+      <div id="name-zh" class="name-zh hidden"></div>
+
+      <div id="meta-row" class="meta-row"></div>
+
+      <div id="diet-tags" class="diet-tags hidden"></div>
+
+      <p id="intro" class="intro hidden"></p>
+
+      <!-- Address is partially revealed (area + state only) so the recipient
+           can place the restaurant on the map in their head. The precise
+           street and unit are gated behind the app — "I know where to find
+           it" is worth the download. -->
+      <button id="address-row" class="row-locked hidden" onclick="openInApp()">
+        <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="lk-body">
+          <div class="lk-main"><span id="address-preview"></span></div>
+          <div class="lk-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span data-i18n="unlock_full_address">Full address in app</span>
+          </div>
         </div>
-        <h1 class="restaurant-name">Discover Vegetarian Restaurants</h1>
-        <p class="restaurant-address">发现马来西亚素食餐厅</p>
-        <div class="divider"></div>
-        <p class="message">
-          Explore 1,800+ veggie &amp; vegan spots across Malaysia.
-          <span class="message-zh">探索马来西亚 1,800+ 素食餐厅。</span>
-        </p>
-        <button class="btn btn-primary" onclick="downloadApp()">
-          Download App / 下载 App
+        <span class="lk-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </button>
+
+      <!-- Phone is completely gated. A tel: link on the web would let the
+           recipient call without installing — killing the conversion hook. -->
+      <button id="phone-row" class="row-locked hidden" onclick="openInApp()">
+        <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="lk-body">
+          <div class="lk-main" data-i18n="call_restaurant">Call this restaurant</div>
+          <div class="lk-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span data-i18n="unlock_phone">Available in GoVeggie app</span>
+          </div>
+        </div>
+        <span class="lk-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </button>
+
+      <div class="cta-stack">
+        <button class="btn btn-primary" onclick="openInApp()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span data-i18n="cta_open_in_app">Open in GoVeggie</span>
         </button>
-        <div class="badges" style="margin-top:16px">
-          <a href="https://apps.apple.com/my/app/goveggie-malaysia/id1183783738">
-            <img src="/images/badges/app-store-en.svg" alt="Download on the App Store">
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog">
-            <img src="/images/badges/google-play-en.svg" alt="Get it on Google Play">
-          </a>
-        </div>
+        <button class="btn btn-secondary" onclick="downloadApp()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i18n="cta_download_app">Download App</span>
+        </button>
+        <div class="cta-hint" data-i18n="cta_hint">View full details, reviews, and more in the app</div>
       </div>
     </div>
+
+    <!-- Quick info cards -->
+    <div id="quick-info-section" class="section hidden">
+      <div class="section-title" data-i18n="section_quickinfo">Quick info</div>
+      <div id="info-grid" class="info-grid"></div>
+    </div>
+
+    <!-- Photos -->
+    <div id="photos-section" class="section hidden">
+      <div class="section-title" data-i18n="section_photos">Photos</div>
+      <div id="photos-grid" class="photos-grid"></div>
+    </div>
+
+    <!-- Locked content teaser — progressive disclosure -->
+    <div class="locked">
+      <div class="locked-head">
+        <span class="lock-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span data-i18n="locked_chip">More in the app</span>
+        </span>
+        <h3 data-i18n="locked_title">View full details in the app</h3>
+      </div>
+      <ul class="locked-list">
+        <li>
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg>
+          </span>
+          <span class="label" data-i18n="locked_reviews">Reviews &amp; ratings</span>
+          <span class="dot">·</span>
+        </li>
+        <li>
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </span>
+          <span class="label" data-i18n="locked_menu">Full menu &amp; prices</span>
+          <span class="dot">·</span>
+        </li>
+        <li>
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          </span>
+          <span class="label" data-i18n="locked_directions">Turn-by-turn directions</span>
+        </li>
+      </ul>
+      <button class="btn btn-primary btn-unlock" onclick="openInApp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span data-i18n="cta_open_in_app">Open in GoVeggie</span>
+      </button>
+    </div>
+
+    <!-- Social proof -->
+    <div class="proof">
+      <div class="stars">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5"/></svg>
+      </div>
+      <p class="quote">
+        <span data-i18n="proof_line_a">Trusted by</span>
+        <span class="hl" data-i18n="proof_count">260,000+</span>
+        <span data-i18n="proof_line_b">vegetarians in Malaysia</span>
+      </p>
+      <div class="sub" data-i18n="proof_sub">A community-built, always-free directory</div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final">
+      <h3 data-i18n="final_title">Explore more vegetarian places with GoVeggie</h3>
+      <button class="btn btn-white" onclick="downloadApp()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="cta_download_goveggie">Download GoVeggie</span>
+      </button>
+      <div class="final-hint" data-i18n="final_hint">Free · iOS & Android</div>
+    </div>
+
+    <div class="mini-footer" data-i18n="community_tag">A community project by the Vegetarian Society of Malaysia</div>
+  </div>
+
+  <!-- Fallback: generic landing (no id or API error) -->
+  <div id="landing" class="landing hidden">
+    <section class="landing-hero">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.8 2c1 3 .5 6.81 0 9-.92 3.99-3.98 6.61-8 7-2.3.22-5 0-6 0Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+        <span>GoVeggie Malaysia</span>
+      </span>
+      <h1 data-i18n="landing_h1">Find vegetarian food near you</h1>
+      <p class="sub">
+        <span data-i18n="landing_sub_a">Discover</span>
+        <span class="hl">1,800+</span>
+        <span data-i18n="landing_sub_b">vegetarian & vegan restaurants across Malaysia.</span>
+      </p>
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="downloadApp()" data-i18n="cta_download_app">Download App</button>
+      </div>
+      <div class="landing-photo">
+        <img src="/images/hero-food.png" alt="">
+      </div>
+    </section>
+    <div class="mini-footer" data-i18n="community_tag">A community project by the Vegetarian Society of Malaysia</div>
   </div>
 
   <script>
     const APP_STORE_URL = 'https://apps.apple.com/my/app/goveggie-malaysia/id1183783738';
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.dwhka.msiafoodlog';
+    const API_BASE = 'https://goveggiemalaysia.cloud/api';
+
+    const T = {
+      en: {
+        loading: 'Loading restaurant…',
+        shared_via: 'Shared via GoVeggie',
+        cta_open_in_app: 'Open in GoVeggie',
+        cta_download_app: 'Download App',
+        cta_download_goveggie: 'Download GoVeggie',
+        cta_hint: 'View full details, reviews, and more in the app',
+        section_quickinfo: 'Quick info',
+        section_photos: 'Photos',
+        info_hours: 'Hours',
+        info_price: 'Price',
+        info_cuisine: 'Cuisine',
+        info_diet: 'Diet',
+        info_area: 'Area',
+        locked_chip: 'More in the app',
+        locked_title: 'View full details in the app',
+        locked_reviews: 'Reviews & ratings',
+        locked_menu: 'Full menu & prices',
+        locked_directions: 'Turn-by-turn directions',
+        proof_line_a: 'Trusted by',
+        proof_count: '260,000+',
+        proof_line_b: 'vegetarians in Malaysia',
+        proof_sub: 'A community-built, always-free directory',
+        final_title: 'Explore more vegetarian places with GoVeggie',
+        final_hint: 'Free · iOS & Android',
+        community_tag: 'A community project by the Vegetarian Society of Malaysia',
+        // Pill + meta + tag labels
+        status_open: 'Open now',
+        status_closed: 'Closed',
+        tag_vegan: 'Vegan',
+        tag_vegetarian: 'Vegetarian',
+        tag_allium: 'Allium',
+        tag_no_allium: 'No Five-Pungent',
+        tag_recommended: 'Recommended',
+        cat_restaurant: 'Vegetarian Restaurant',
+        cat_shop: 'Shop',
+        cat_friendly: 'Veg-Friendly',
+        cat_hawker_stall: 'Hawker Stall',
+        cat_cafe: 'Cafe',
+        cat_snack_station: 'Snack Station',
+        cat_bakery: 'Bakery',
+        closed_on: 'Closed: {days}',
+        weekday_monday: 'Mon',    weekday_tuesday: 'Tue',
+        weekday_wednesday: 'Wed', weekday_thursday: 'Thu',
+        weekday_friday: 'Fri',    weekday_saturday: 'Sat',
+        weekday_sunday: 'Sun',
+        weekday_lunar: '1st & 15th', weekday_ph: 'Public holidays',
+        unlock_full_address: 'Full address in app',
+        unlock_phone: 'Available in GoVeggie app',
+        call_restaurant: 'Call this restaurant',
+        unlock_in_app: 'Tap to unlock',
+        price_budget: 'Budget',
+        price_mid: 'Mid-range',
+        price_premium: 'Premium',
+        // Fallback
+        landing_h1: 'Find vegetarian food near you',
+        landing_sub_a: 'Discover',
+        landing_sub_b: 'vegetarian & vegan restaurants across Malaysia.',
+      },
+      zh: {
+        loading: '加载餐厅中…',
+        shared_via: '通过 GoVeggie 分享',
+        cta_open_in_app: '在 GoVeggie 中打开',
+        cta_download_app: '下载 App',
+        cta_download_goveggie: '下载 GoVeggie',
+        cta_hint: '在 App 中查看完整详情、评价与更多内容',
+        section_quickinfo: '快速资讯',
+        section_photos: '照片',
+        info_hours: '营业时间',
+        info_price: '价位',
+        info_cuisine: '餐式',
+        info_diet: '饮食',
+        info_area: '地区',
+        locked_chip: 'App 内更多',
+        locked_title: '在 App 中查看完整内容',
+        locked_reviews: '评价 & 评分',
+        locked_menu: '完整菜单 & 价位',
+        locked_directions: '逐步导航',
+        proof_line_a: '已被',
+        proof_count: '260,000+',
+        proof_line_b: '位大马素食者信任',
+        proof_sub: '社群打造、永久免费的素食目录',
+        final_title: '与 GoVeggie 一起发现更多素食好店',
+        final_hint: '免费 · iOS & Android',
+        community_tag: '马来西亚素食协会社群项目',
+        status_open: '营业中',
+        status_closed: '已休息',
+        tag_vegan: '纯素',
+        tag_vegetarian: '素食',
+        tag_allium: '含五辛',
+        tag_no_allium: '无五辛',
+        tag_recommended: '推荐',
+        cat_restaurant: '素食餐厅',
+        cat_shop: '商店',
+        cat_friendly: '素食友好',
+        cat_hawker_stall: '小贩档口',
+        cat_cafe: '咖啡厅',
+        cat_snack_station: '小食店',
+        cat_bakery: '面包店',
+        closed_on: '休息日：{days}',
+        weekday_monday: '周一',   weekday_tuesday: '周二',
+        weekday_wednesday: '周三', weekday_thursday: '周四',
+        weekday_friday: '周五',   weekday_saturday: '周六',
+        weekday_sunday: '周日',
+        weekday_lunar: '初一/十五', weekday_ph: '公共假期',
+        unlock_full_address: '在 App 中查看完整地址',
+        unlock_phone: '在 GoVeggie App 中拨打',
+        call_restaurant: '拨打餐厅电话',
+        unlock_in_app: '点击解锁',
+        price_budget: '经济',
+        price_mid: '中价',
+        price_premium: '高价',
+        landing_h1: '找到你身边的素食好店',
+        landing_sub_a: '探索马来西亚',
+        landing_sub_b: '家素食与纯素餐厅。',
+      },
+      ms: {
+        loading: 'Memuatkan restoran…',
+        shared_via: 'Dikongsi melalui GoVeggie',
+        cta_open_in_app: 'Buka dalam GoVeggie',
+        cta_download_app: 'Muat Turun Apl',
+        cta_download_goveggie: 'Muat Turun GoVeggie',
+        cta_hint: 'Lihat butiran penuh, ulasan, dan lagi dalam apl',
+        section_quickinfo: 'Maklumat pantas',
+        section_photos: 'Foto',
+        info_hours: 'Waktu',
+        info_price: 'Harga',
+        info_cuisine: 'Masakan',
+        info_diet: 'Diet',
+        info_area: 'Kawasan',
+        locked_chip: 'Lagi dalam apl',
+        locked_title: 'Lihat butiran penuh dalam apl',
+        locked_reviews: 'Ulasan & penilaian',
+        locked_menu: 'Menu penuh & harga',
+        locked_directions: 'Panduan langkah demi langkah',
+        proof_line_a: 'Dipercayai oleh',
+        proof_count: '260,000+',
+        proof_line_b: 'vegetarian di Malaysia',
+        proof_sub: 'Direktori percuma yang dibina oleh komuniti',
+        final_title: 'Terokai lebih banyak tempat vegetarian dengan GoVeggie',
+        final_hint: 'Percuma · iOS & Android',
+        community_tag: 'Projek komuniti oleh Persatuan Vegetarian Malaysia',
+        status_open: 'Dibuka',
+        status_closed: 'Ditutup',
+        tag_vegan: 'Vegan',
+        tag_vegetarian: 'Vegetarian',
+        tag_allium: 'Lima Pedas',
+        tag_no_allium: 'Tanpa Lima Pedas',
+        tag_recommended: 'Disyorkan',
+        cat_restaurant: 'Restoran Vegetarian',
+        cat_shop: 'Kedai',
+        cat_friendly: 'Mesra Vegetarian',
+        cat_hawker_stall: 'Gerai Hawker',
+        cat_cafe: 'Kafe',
+        cat_snack_station: 'Kedai Snek',
+        cat_bakery: 'Kedai Roti',
+        closed_on: 'Tutup: {days}',
+        weekday_monday: 'Isn',   weekday_tuesday: 'Sel',
+        weekday_wednesday: 'Rab', weekday_thursday: 'Kha',
+        weekday_friday: 'Jum',   weekday_saturday: 'Sab',
+        weekday_sunday: 'Ahd',
+        weekday_lunar: '1 & 15', weekday_ph: 'Cuti umum',
+        unlock_full_address: 'Alamat penuh dalam apl',
+        unlock_phone: 'Tersedia dalam apl GoVeggie',
+        call_restaurant: 'Hubungi restoran',
+        unlock_in_app: 'Tekan untuk buka',
+        price_budget: 'Jimat',
+        price_mid: 'Sederhana',
+        price_premium: 'Premium',
+        landing_h1: 'Cari makanan vegetarian berdekatan',
+        landing_sub_a: 'Terokai',
+        landing_sub_b: 'restoran vegetarian & vegan di Malaysia.',
+      },
+    };
+
+    let currentLang = 'zh';
+    let lastRestaurantData = null;
+
+    function detectLang() {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang && T[urlLang]) return urlLang;
+      const stored = localStorage.getItem('goveggie-lang');
+      if (stored && T[stored]) return stored;
+      const nav = (navigator.language || '').toLowerCase();
+      if (nav.startsWith('zh')) return 'zh';
+      if (nav.startsWith('ms') || nav.startsWith('id')) return 'ms';
+      return 'en';
+    }
+
+    function applyStaticStrings() {
+      const dict = T[currentLang] || T.en;
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach((b) => {
+        b.classList.toggle('active', b.getAttribute('data-lang') === currentLang);
+      });
+      document.documentElement.setAttribute(
+        'lang', currentLang === 'zh' ? 'zh-CN' : (currentLang === 'ms' ? 'ms' : 'en')
+      );
+    }
+
+    function setLang(lang) {
+      if (!T[lang]) return;
+      currentLang = lang;
+      localStorage.setItem('goveggie-lang', lang);
+      applyStaticStrings();
+      if (lastRestaurantData) loadRestaurant();
+    }
 
     function isIOS() {
       const ua = navigator.userAgent || '';
@@ -286,67 +1070,392 @@
     function downloadApp() {
       if (isIOS()) window.location.href = APP_STORE_URL;
       else if (isAndroid()) window.location.href = PLAY_STORE_URL;
-      else window.location.href = '/';
+      else window.location.href = APP_STORE_URL;
     }
 
-    function buildPhotoUrl(legacyPid, filename) {
-      if (!legacyPid || !filename) return null;
-      // Use the resized thumbnail endpoint we just added (?w=800)
-      return `https://goveggiemalaysia.cloud/api/photos/${legacyPid}/${encodeURIComponent(filename)}?w=800`;
-    }
-
-    (async function () {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get('id');
-
-      if (!id) {
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('fallback').classList.remove('hidden');
+    function openInApp() {
+      const id = getRestaurantId();
+      if (!id) { downloadApp(); return; }
+      const universal = `https://goveggiemalaysia.cloud/r/${encodeURIComponent(id)}?utm_source=web_landing`;
+      if (isAndroid()) {
+        const fallback = encodeURIComponent(PLAY_STORE_URL);
+        window.location.href =
+          `intent://goveggiemalaysia.cloud/r/${encodeURIComponent(id)}` +
+          `#Intent;scheme=https;package=com.dwhka.msiafoodlog;` +
+          `S.browser_fallback_url=${fallback};end`;
         return;
       }
+      if (isIOS()) {
+        const started = Date.now();
+        const timer = setTimeout(() => {
+          if (Date.now() - started < 2500 && document.visibilityState === 'visible') {
+            window.location.href = APP_STORE_URL;
+          }
+        }, 1500);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'hidden') clearTimeout(timer);
+        }, { once: true });
+        window.location.href = universal;
+        return;
+      }
+      window.location.href = '/';
+    }
 
+    function buildPhotoUrl(legacyPid, filename, width) {
+      if (!filename) return null;
+      const w = width || 800;
+      if (/^[0-9a-f]{32,}\.\w+$/i.test(filename)) {
+        return `https://goveggiemalaysia.cloud/uploads/${encodeURIComponent(filename)}`;
+      }
+      const m = filename.match(/^[a-z]*(\d+)_/i);
+      if (m) {
+        const pid = m[1];
+        return `https://goveggiemalaysia.cloud/api/photos/${pid}/${encodeURIComponent(filename)}?w=${w}`;
+      }
+      if (legacyPid) {
+        return `https://goveggiemalaysia.cloud/api/photos/${legacyPid}/${encodeURIComponent(filename)}?w=${w}`;
+      }
+      return null;
+    }
+
+    function priceLabel(range) {
+      if (range == null) return '';
+      const n = Number(range);
+      return n === 1 ? '$' : n === 2 ? '$$' : n === 3 ? '$$$' : '';
+    }
+    // Prefer the specific shop_type (e.g. "Hawker Stall") over the broad
+    // category (e.g. "Restaurant") — a hawker stall should not show as
+    // "Vegetarian Restaurant" since that's misleading to diners.
+    function categoryLabel(data) {
+      const d = T[currentLang] || T.en;
+      const shopTypes = Array.isArray(data.shop_types) ? data.shop_types : [];
+      const shopMap = {
+        hawker_stall:  d.cat_hawker_stall,
+        cafe:          d.cat_cafe,
+        snack_station: d.cat_snack_station,
+        bakery:        d.cat_bakery,
+        restaurant:    d.cat_restaurant,
+      };
+      for (const s of shopTypes) {
+        if (shopMap[s]) return shopMap[s];
+      }
+      if (data.category === 'restaurant') return d.cat_restaurant;
+      if (data.category === 'shop')       return d.cat_shop;
+      if (data.category === 'friendly')   return d.cat_friendly;
+      return '';
+    }
+
+    function restDaysLabel(data) {
+      const d = T[currentLang] || T.en;
+      const note = (data.rest_days_note || '').trim();
+      if (note) return note;                         // admin free-text wins
+      const days = Array.isArray(data.rest_days) ? data.rest_days : [];
+      if (!days.length) return '';
+      const dayMap = {
+        monday: d.weekday_monday, tuesday: d.weekday_tuesday,
+        wednesday: d.weekday_wednesday, thursday: d.weekday_thursday,
+        friday: d.weekday_friday, saturday: d.weekday_saturday,
+        sunday: d.weekday_sunday,
+        lunar_1_15: d.weekday_lunar, public_holiday: d.weekday_ph,
+      };
+      const names = days.map((x) => dayMap[x] || x).filter(Boolean);
+      return d.closed_on.replace('{days}', names.join(', '));
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',
+      })[c]);
+    }
+
+    function setStatus(data) {
+      const pill = document.getElementById('status-pill');
+      const text = document.getElementById('status-text');
+      const d = T[currentLang] || T.en;
+      if (data.is_open_now === true) {
+        pill.classList.remove('hidden', 'closed');
+        text.textContent = d.status_open;
+      } else if (data.is_open_now === false) {
+        pill.classList.remove('hidden');
+        pill.classList.add('closed');
+        text.textContent = d.status_closed;
+      } else {
+        pill.classList.add('hidden');
+      }
+    }
+
+    // Picks the locale-appropriate variant of a "name + name_zh" field pair.
+    // Backend returns area_name/state_name (English) and area_name_zh/state_name_zh.
+    // There's no Malay variant, so MS falls through to English.
+    function pickLocaleName(data, baseKey) {
+      const en = (data[baseKey] || '').trim();
+      const zh = (data[baseKey + '_zh'] || '').trim();
+      if (currentLang === 'zh') return zh || en;
+      return en || zh;
+    }
+
+    function setMetaRow(data) {
+      const el = document.getElementById('meta-row');
+      const parts = [];
+      // Backend doesn't track per-restaurant ratings, so don't fake one.
+      const cat = categoryLabel(data);
+      if (cat) parts.push(`<span class="item bold">${escapeHtml(cat)}</span>`);
+      const price = priceLabel(data.price_range);
+      if (price) parts.push(`<span class="item">${price}</span>`);
+      const area = pickLocaleName(data, 'area_name');
+      if (area) parts.push(`<span class="item">${escapeHtml(area)}</span>`);
+      el.innerHTML = parts.join('<span class="sep">·</span>');
+    }
+
+    // Icons chosen to mirror the Flutter app's filled badges: Icons.eco for
+     // diet, Icons.local_fire_department for allium, Icons.check_circle for
+     // no-allium, Icons.star for recommended.
+    const ICON_ECO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.8 2c1 3 .5 6.81 0 9-.92 3.99-3.98 6.61-8 7-2.3.22-5 0-6 0Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>';
+    const ICON_FIRE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s-1 3-3 5 .5 6 3 6 5-3 3-6-3-5-3-5z"/><path d="M8.5 14C7 15.5 6 17 6 19a6 6 0 0 0 12 0c0-2-1-3.5-2.5-5-1 2-2.5 3-3.5 3s-2.5-1-3.5-3z"/></svg>';
+    const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+    const ICON_STAR = '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,8.5 22,9.5 17,14.5 18.5,21.5 12,18 5.5,21.5 7,14.5 2,9.5 9,8.5"/></svg>';
+
+    function setDietTags(data) {
+      const el = document.getElementById('diet-tags');
+      const d = T[currentLang] || T.en;
+      const diet = Array.isArray(data.diet_types) ? data.diet_types : [];
+      const foodTags = Array.isArray(data.food_tags) ? data.food_tags : [];
+      const html = [];
+      if (diet.includes('vegan')) {
+        html.push(`<span class="tag tag-vegan">${ICON_ECO}${d.tag_vegan}</span>`);
+      } else if (diet.includes('vegetarian')) {
+        html.push(`<span class="tag tag-vegetarian">${ICON_ECO}${d.tag_vegetarian}</span>`);
+      }
+      if (data.has_five_pungent === true) {
+        html.push(`<span class="tag tag-allium">${ICON_FIRE}${d.tag_allium}</span>`);
+      } else {
+        html.push(`<span class="tag tag-no-allium">${ICON_CHECK}${d.tag_no_allium}</span>`);
+      }
+      if (data.recommended === 1 || data.recommended === true) {
+        html.push(`<span class="tag tag-recommended">${ICON_STAR}${d.tag_recommended}</span>`);
+      }
+      // Up to 2 cuisine tags for scanning
+      foodTags.slice(0, 2).forEach((t) => {
+        const name = typeof t === 'object'
+          ? (t['tag_name_' + currentLang] || t.tag_name_en || t.tag_name_zh || t.tag_code)
+          : t;
+        if (name) html.push(`<span class="tag tag-cuisine">${escapeHtml(name)}</span>`);
+      });
+      el.classList.toggle('hidden', html.length === 0);
+      el.innerHTML = html.join('');
+    }
+
+    function setPhone(data) {
+      // The phone row is always the "locked" CTA now. We only show it if
+      // the restaurant actually has a number on file — no point hinting at
+      // content that doesn't exist.
+      const row = document.getElementById('phone-row');
+      const hasPhone = !!(data.phone || data.phone2 || data.phone3);
+      row.classList.toggle('hidden', !hasPhone);
+    }
+
+    function setIntroAndAddress(data) {
+      const introEl = document.getElementById('intro');
+      const intro = (data.intro || '').trim();
+      if (intro) {
+        // Tight 80-char teaser — enough flavour to say "this is a real place
+        // with real food" without giving away the whole description.
+        const teaser = intro.length > 80 ? intro.slice(0, 80).trim() + '…' : intro;
+        introEl.textContent = teaser;
+        introEl.classList.remove('hidden');
+      } else {
+        introEl.classList.add('hidden');
+      }
+      // Address is shown as a *partial* hook: area + state, not the full
+      // street. Lets the viewer place the restaurant roughly on the map in
+      // their head, but they still need the app for turn-by-turn.
+      const addrWrap = document.getElementById('address-row');
+      const addrPreview = document.getElementById('address-preview');
+      const area = pickLocaleName(data, 'area_name');
+      const state = pickLocaleName(data, 'state_name');
+      const parts = [area, state].filter(Boolean);
+      if (parts.length) {
+        addrPreview.textContent = parts.join(', ');
+        addrWrap.classList.remove('hidden');
+      } else if (data.address) {
+        // No clean area data — fall back to a masked address (first word only).
+        addrPreview.textContent = data.address.split(',')[0] + '…';
+        addrWrap.classList.remove('hidden');
+      } else {
+        addrWrap.classList.add('hidden');
+      }
+    }
+
+    function setQuickInfo(data) {
+      const d = T[currentLang] || T.en;
+      const items = [];
+      if (data.working_hours || (data.rest_days || []).length || data.rest_days_note) {
+        const lines = [];
+        if (data.working_hours) lines.push(data.working_hours.trim());
+        const rest = restDaysLabel(data);
+        if (rest) lines.push(rest);
+        items.push({
+          icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+          lbl: d.info_hours,
+          val: lines.join(' · '),
+          locked: true,   // blur the value + add a lock overlay + tap-to-unlock
+        });
+      }
+      // Price card — pair the $-symbol with a short descriptor so it
+      // matches the visual weight of cards like Cuisine ("Chinese · Noodles")
+      // and Diet ("Vegetarian · No Five-Pungent"), which naturally have two
+      // parts. Without the descriptor the card reads as one lonely "$".
+      const priceN = Number(data.price_range);
+      if (priceN === 1 || priceN === 2 || priceN === 3) {
+        const priceDescMap = { 1: d.price_budget, 2: d.price_mid, 3: d.price_premium };
+        const priceSymbol = priceN === 1 ? '$' : priceN === 2 ? '$$' : '$$$';
+        const desc = priceDescMap[priceN];
+        items.push({
+          icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+          lbl: d.info_price,
+          val: desc ? `${priceSymbol} · ${desc}` : priceSymbol,
+        });
+      }
+      const foodTags = Array.isArray(data.food_tags) ? data.food_tags : [];
+      if (foodTags.length) {
+        const names = foodTags.slice(0, 2).map((t) => {
+          return typeof t === 'object'
+            ? (t['tag_name_' + currentLang] || t.tag_name_en || t.tag_name_zh || t.tag_code)
+            : t;
+        }).filter(Boolean).join(' · ');
+        if (names) {
+          items.push({
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>',
+            lbl: d.info_cuisine,
+            val: names,
+          });
+        }
+      }
+      const diet = Array.isArray(data.diet_types) ? data.diet_types : [];
+      if (diet.length) {
+        const dietVal = diet.includes('vegan')
+          ? d.tag_vegan
+          : diet.includes('vegetarian') ? d.tag_vegetarian : '';
+        const alliumPart = data.has_five_pungent === true ? ` · ${d.tag_allium}` : ` · ${d.tag_no_allium}`;
+        items.push({
+          icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.8 2c1 3 .5 6.81 0 9-.92 3.99-3.98 6.61-8 7-2.3.22-5 0-6 0Z"/></svg>',
+          lbl: d.info_diet,
+          val: (dietVal + alliumPart).trim(),
+        });
+      }
+      const section = document.getElementById('quick-info-section');
+      const grid = document.getElementById('info-grid');
+      if (items.length === 0) { section.classList.add('hidden'); return; }
+      section.classList.remove('hidden');
+      const lockChip = `<div class="lock-over"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>${d.unlock_in_app}</span></div>`;
+      grid.innerHTML = items.map((it) => `
+        <div class="info-card${it.locked ? ' is-locked' : ''}" ${it.locked ? 'onclick="openInApp()"' : ''}>
+          <div class="ic">${it.icon}</div>
+          <div class="lbl">${escapeHtml(it.lbl)}</div>
+          <div class="val">${escapeHtml(it.val)}</div>
+          ${it.locked ? lockChip : ''}
+        </div>
+      `).join('');
+    }
+
+    function setPhotos(data) {
+      const section = document.getElementById('photos-section');
+      const grid = document.getElementById('photos-grid');
+      const photos = Array.isArray(data.photos) ? data.photos.slice(0) : [];
+      // Skip cover if already shown in hero to avoid duplication
+      const cover = data.cover_photo;
+      const extras = cover ? photos.filter((p) => p !== cover) : photos;
+      // Cap at 2 — the web page is a teaser, not a full gallery. Deeper
+      // photos are part of the "unlock in app" promise below.
+      const pick = extras.slice(0, 2);
+      if (pick.length === 0) { section.classList.add('hidden'); return; }
+      section.classList.remove('hidden');
+      grid.className = 'photos-grid count-' + pick.length;
+      grid.innerHTML = pick.map((fn) => {
+        const url = buildPhotoUrl(data.legacy_pid, fn, 600);
+        return `<div class="ph"><img src="${url}" alt="" loading="lazy"></div>`;
+      }).join('');
+    }
+
+    function showLanding() {
+      document.getElementById('loading').classList.add('hidden');
+      document.getElementById('content').classList.add('hidden');
+      document.getElementById('landing').classList.remove('hidden');
+    }
+
+    // Extract the restaurant id from either ?id= (when the page was reached
+    // via /restaurant.html?id=123) or from the path /r/123 (server rewrote
+    // internally, so the browser URL keeps /r/123 and window.location.search
+    // never sees id).
+    function getRestaurantId() {
+      const q = new URLSearchParams(window.location.search).get('id');
+      if (q) return q;
+      const m = window.location.pathname.match(/^\/r\/(\d+)/);
+      return m ? m[1] : null;
+    }
+
+    async function loadRestaurant() {
+      const id = getRestaurantId();
+      if (!id) { showLanding(); return; }
       try {
-        const res = await fetch('https://goveggiemalaysia.cloud/api/restaurants/' + encodeURIComponent(id));
+        const res = await fetch(`${API_BASE}/restaurants/${encodeURIComponent(id)}?locale=${currentLang}`);
         if (!res.ok) throw new Error('Not found');
         const data = await res.json();
+        lastRestaurantData = data;
 
-        const name = data.name || 'Restaurant';
-        const address = data.address || '';
+        const name = data.name || data.name_zh || 'Restaurant';
+        const nameZh = (data.name_zh && data.name_zh !== name) ? data.name_zh : '';
 
         document.getElementById('name').textContent = name;
-        document.getElementById('address').textContent = address;
+        const nameZhEl = document.getElementById('name-zh');
+        if (nameZh) { nameZhEl.textContent = nameZh; nameZhEl.classList.remove('hidden'); }
+        else { nameZhEl.classList.add('hidden'); }
+
         document.title = name + ' · GoVeggie Malaysia';
 
-        // Hero photo (cover photo or first photo)
-        const hero = document.getElementById('hero');
-        const cover = data.cover_photo || (data.photos && data.photos[0]);
-        const photoUrl = buildPhotoUrl(data.legacy_pid, cover);
+        setStatus(data);
+        setMetaRow(data);
+        setDietTags(data);
+        setIntroAndAddress(data);
+        setPhone(data);
+        setQuickInfo(data);
+        setPhotos(data);
+
+        // Hero cover photo
+        const hero = document.getElementById('hero-img');
+        const placeholder = document.getElementById('hero-placeholder');
+        const cover = data.cover_photo || (Array.isArray(data.photos) && data.photos[0]);
+        const photoUrl = buildPhotoUrl(data.legacy_pid, cover, 1200);
         if (photoUrl) {
-          hero.src = photoUrl;
-          hero.classList.remove('placeholder');
-          hero.onerror = () => {
-            hero.removeAttribute('src');
-            hero.classList.add('placeholder');
-            hero.textContent = '🍽️';
+          hero.onload = () => {
+            hero.classList.remove('hidden');
+            placeholder.style.display = 'none';
           };
+          hero.src = photoUrl;
+          hero.alt = name;
         } else {
-          hero.classList.add('placeholder');
-          hero.textContent = '🍽️';
+          hero.classList.add('hidden');
+          placeholder.style.display = 'flex';
         }
 
-        // Update OG tags
         document.getElementById('og-title').setAttribute('content', name + ' · GoVeggie Malaysia');
-        document.getElementById('og-desc').setAttribute('content', address || 'Vegetarian restaurant in Malaysia');
-        if (photoUrl) {
-          document.getElementById('og-image').setAttribute('content', photoUrl);
-        }
+        document.getElementById('og-desc').setAttribute(
+          'content',
+          (data.intro || data.address || 'Vegetarian restaurant in Malaysia').slice(0, 180)
+        );
+        if (photoUrl) document.getElementById('og-image').setAttribute('content', photoUrl);
 
         document.getElementById('loading').classList.add('hidden');
+        document.getElementById('landing').classList.add('hidden');
         document.getElementById('content').classList.remove('hidden');
       } catch (e) {
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('fallback').classList.remove('hidden');
+        showLanding();
       }
+    }
+
+    (function init() {
+      currentLang = detectLang();
+      applyStaticStrings();
+      loadRestaurant();
     })();
   </script>
 </body>
